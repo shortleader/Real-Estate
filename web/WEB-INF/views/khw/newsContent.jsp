@@ -15,7 +15,7 @@
 		<!-- /.row -->
 	</div>
 </div>
-end
+
 <!-- /.container -->
 
 
