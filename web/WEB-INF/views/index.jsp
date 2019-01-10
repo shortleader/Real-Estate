@@ -1,23 +1,75 @@
-<%@ page import="com.budong.R" %><%--
-  Created by IntelliJ IDEA.
-  User: S401-28
-  Date: 2018-11-08
-  Time: 오후 2:54
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page import="com.budong.R" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
 <html>
 <head>
-<title></title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/resources/icon/main.ico">
+<title>여기 부동산 어떄</title>
+
+<!-- Bootstrap core CSS -->
+<link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="resources/css/4-col-portfolio.css" rel="stylesheet">
+
+
 </head>
 <body>
-	메롱메롱
-	<a href="<%=R.requestToHost(R.controller.real_estate_deal_info, R.mapping.apartment_deal_info)%>">김준영/ 아파트 매매정보 보기</a>
 
-	<!--ljy-->
-	<div align="center">
-		<a href="<%=R.requestToHost(R.mapping.chat_home)%>">채팅 바로가기</a>
-	</div>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">여기 Budong</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a class="nav-link" href="/budong/">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">매물/시세</a></li>
+					<li class="nav-item"><a class="nav-link" href="<%=R.requestToHost(R.path.news_title)%>">뉴스</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">직거래</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">직거래</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">직거래</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<%-- <c:import url="page.jsp"></c:import> --%>
+	
+
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; Your
+				Website 2018</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="resources/vendor/jquery/jquery.min.js"></script>
+	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="resources/js/news.js"></script>
 
 </body>
+
 </html>
