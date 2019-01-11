@@ -3,7 +3,7 @@ package com.budong;
 import java.util.regex.Pattern;
 
 public class R {
-    public static String hostAddress = "localhost:8081";
+    public static String hostAddress = "localhost:8081/budong/";
 
     public static String requestToHost(String mappingOrRestResource) {
         return requestToHostWithScheme("http", mappingOrRestResource);
