@@ -26,7 +26,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="#">여기 Budong</a>
+			<a class="navbar-brand" href="<%=request.getContextPath()%>">여기 Budong</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -34,17 +34,14 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a class="nav-link" href="/budong/">Home
-							<span class="sr-only">(current)</span>
+					<li class="nav-item active"><a class="nav-link" href="<%=request.getContextPath()%>">Home<span class="sr-only">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">매물/시세</a></li>
-					<li class="nav-item"><a class="nav-link" href="<%=R.requestToHost(R.path.news_title)%>">뉴스</a>
+					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()+R.mapping.khw_main%>">뉴스</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">직거래</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#">직거래</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="#">직거래</a>
+					<li class="nav-item"><a class="nav-link" href="#">커뮤니티</a>
 					</li>
 				</ul>
 			</div>
