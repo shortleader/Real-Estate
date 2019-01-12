@@ -160,8 +160,9 @@
 	<script type="text/javascript">
 		var webSocket;
 
+		<%-- <%=R.requestToHostWithScheme("ws",R.mapping.request_web_socket)%> --%>
 		function connectWebSocket() {			/*웹 소켓 연결 */
-			webSocket = new WebSocket('<%=R.requestToHostWithScheme("ws",R.mapping.request_web_socket)%>'); <%-- ws://localhost:8080/budong/chatting --%>
+			webSocket = new WebSocket('ws://localhost:8080/budong/chatting'); 
 			webSocket.onerror = function(event) {
 				onError(event);
 			};
@@ -178,7 +179,7 @@
 			webSocket.onclose=function(event) {
 				console.log(webSocket+"해제");
 				onClose(event);
-			}
+			};
 		} 
 		 
 		//상대방에게서 메시지 받음 
