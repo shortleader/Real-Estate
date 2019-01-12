@@ -7,10 +7,24 @@
 <meta charset="EUC-KR">
 <title>로그인</title>
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<!--fontawesome-->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/solid.css"
+	integrity="sha384-+0VIRx+yz1WBcCTXBkVQYIBVNEFH1eP6Zknm16roZCyeNg2maWEpk/l/KsyFKs7G"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/regular.css"
+	integrity="sha384-aubIA90W7NxJ+Ly4QHAqo1JBSwQ0jejV75iHhj59KRwVjLVHjuhS3LkDAoa/ltO4"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/fontawesome.css"
+	integrity="sha384-jLuaxTTBR42U2qJ/pm4JRouHkEDHkVqH0T1nyQXn1mZ7Snycpf6Rl25VBNthU4z0"
+	crossorigin="anonymous">
 <script
 	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <link href='<c:url value="/resources/css/login.css" />' rel="stylesheet">
-<script src="<c:url value="/resources/js/login.js" />"></script>
+<script src="<c:url value="/resources/js/login.js" />"></script> 
+
 </head>
 <body>
 	<!-- LOGIN MODULE -->
@@ -68,11 +82,11 @@
 
 			<!-- LOGIN FORM -->
 			<div class="user">
-				<!-- ACTIONS
-                    <div class="actions">
-                        <a class="help" href="#signup-tab-content">Sign Up</a><a class="faq" href="#login-tab-content">Login</a>
-                    </div>
-                    -->
+				<!--CLOSE BUTTON  -->
+				<div id="modal-close" class="close-btn">
+					<i class="far fa-times-circle"></i>
+				</div>
+
 				<div class="form-wrap">
 					<!-- TABS -->
 					<div class="tabs">
@@ -94,14 +108,16 @@
 								method="post" action="login.do">
 								<input type="text" class="input" id="mem_id" name="mem_id"
 									autocomplete="off" placeholder="Username">
-								<p id="login-id-validation" class="validation-text">유효하지 않습니다</p>
+								<p id="login-id-validation" class="validation-text">유효하지
+									않습니다</p>
 								<input type="password" class="input" name="mem_pw" id="mem_pw"
 									autocomplete="off" placeholder="Password">
-								<p id="login-pw-validation" class="validation-text">유효하지 않습니다</p>
+								<p id="login-pw-validation" class="validation-text">유효하지
+									않습니다</p>
 								<!-- <input type="checkbox" class="checkbox" checked id="remember_me"
 									name="useCookie" value="true"> <label for="remember_me">Remember
-									me </label> --> <input type="submit" id="login-btn" class="button"
-									value="Login">
+									me </label> -->
+								<input type="submit" id="login-btn" class="button" value="Login">
 							</form>
 
 							<div class="help-action">
