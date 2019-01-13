@@ -283,8 +283,7 @@
 		function send() {
 			var userInput = $('.text-box');
 			var newMessage = userInput.html().replace(/\<div\>|\<br.*?\>/ig,
-					'\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g,
-					'<br>');
+					'\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g);
 
 			if (!newMessage)
 				return;
