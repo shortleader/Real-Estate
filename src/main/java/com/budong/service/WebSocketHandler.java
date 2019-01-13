@@ -25,6 +25,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.budong.controller.ChatController;
+import com.budong.model.dto.ChatDTO;
 import com.budong.model.dto.MemberDTO;
 import com.budong.service.interfaces.ChatService;
 
@@ -105,15 +106,18 @@ public class WebSocketHandler extends TextWebSocketHandler {
 		logger.info("\n WebSocket onMessage : " + message);
 
 		JSONObject jsonObject = new JSONObject(message.getPayload());
-		String roomName = jsonObject.getString("roomName"); // 현재 방이름
-
+		String id = jsonObject.getString("id"); 
+		String roomName = jsonObject.getString("roomName"); 
+		String content = jsonObject.getString("text"); 
+		
 		Set<WebSocketSession> key = roomList.keySet();
 		Iterator<WebSocketSession> it = key.iterator();
 
 		// 같은 방에 있는 사용자에게 메시지를 전송
 		while (it.hasNext()) {
 			WebSocketSession s = it.next();
-			if (!roomName.equals("") && roomList.get(s).equals(roomName)) {
+			if (!roomName.equals("") && roomList.get(s).equals(roomName)) { 
+				chatService.saveChat(new ChatDTO(id,roomName,content));
 				s.sendMessage(new TextMessage(message.getPayload()));
 			}
 		}

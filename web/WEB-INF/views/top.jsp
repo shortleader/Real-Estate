@@ -148,7 +148,46 @@
 		<c:import url="./member/memberLogin.jsp">
 		</c:import>
 	</div>
+	
+	<c:set var="chatList" value="${chatList}"></c:set>
+	<script> 
+		window.onload = loadChatInfo();
+		
+		function loadChatInfo(){
+			$.ajax({
+				type : 'POST',
+				data : {
+					"mem_id" : "${login.mem_id}"
+				}, 
+				url : "checkRoom.do",
+				success : function(data) { 
 
+				},error : function(data) {
+					console.log("failed loading room name ");
+				}
+			});
+		}
+		
+		function loadChatHistory(roomName) {
+			$.ajax({
+				type : 'POST', 
+				data : roomName,
+				url : "chatList.do", 
+				success : function(data) {
+					setChatHistory(data);
+				}, 
+				error : function(data) {
+					console.log("failed loading chat history"); 
+				}
+			});
+		}
+		
+		function setChatHistory(data) {
+			console.log('${chatList}');
+		}
+		
+	</script> 
+	
 	<script>
 		var modal = document.getElementById('login-modal');
 		var loginBtn = document.getElementById('loginBtn');
@@ -169,7 +208,7 @@
 		}
 	</script>
 	
-	<script type="text/javascript">
+	<script type="text/javascript"> 
 		var webSocket;
 
 		<%-- <%=R.requestToHostWithScheme("ws",R.mapping.request_web_socket)%> --%>

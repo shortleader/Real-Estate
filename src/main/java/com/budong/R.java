@@ -60,7 +60,8 @@ public class R {
 
         public static final String check_id = "/checkId.do";
         public static final String chat_home = "/chatHome.do";
-        public static final String move_chat_room = "/moveChatRoom.do";
+        public static final String move_chat_room = "/moveChatRoom.do"; 
+        public static final String chat_list = "/chatList.do";
         public static final String request_web_socket = "/chatting";
 
         public static final String graph_year_avg = "/graph/year";

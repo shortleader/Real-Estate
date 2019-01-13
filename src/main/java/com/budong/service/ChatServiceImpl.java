@@ -1,5 +1,7 @@
 package com.budong.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +52,19 @@ public class ChatServiceImpl implements ChatService {
 		String roomName = chatDAO.getPrevRoom(mem_id);
 		return roomName;
 	}
+
+	
+	@Override
+	public void saveChat(ChatDTO dto) { 
+		int res = chatDAO.saveChat(dto);  
+	}
+
+	@Override
+	public List<ChatDTO> getChatHistory(String room) { 
+		List<ChatDTO> chatList = chatDAO.getChatHistory(room); 
+		return chatList; 
+	} 
+	
+	
 	
 }
