@@ -1,3 +1,4 @@
+
 <%@ page import="com.budong.R" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -19,7 +20,6 @@
 <!-- Custom styles for this template -->
 <link href="resources/css/4-col-portfolio.css" rel="stylesheet">
 
-
 </head>
 <body>
 
@@ -36,5 +36,4 @@
 	<script src="resources/js/news.js"></script>
 
 </body>
-
 </html>
