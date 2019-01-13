@@ -14,6 +14,7 @@ import com.budong.service.interfaces.MainService;
 
 @Service
 public class MainServiceImpl implements MainService {
+	
 	private final MemberDAO memberDAO;
 	private static final Logger logger = LoggerFactory.getLogger(ChatController.class);
 
@@ -25,20 +26,10 @@ public class MainServiceImpl implements MainService {
 	// 아이디 중복 확인
 	@Override
 	public boolean isAvailableId(String id) { 
-		int rslt = memberDAO.isAvailableId(id);  
+		int res = memberDAO.isAvailableId(id);  
 		
-		if(rslt ==0 ) {
-			return true; 
-		}else {
-			return false; 
-		}
-	}
-
-	//자동 로그인에 체크했을 경우 
-	//아이디, 세션ID, 세션유효시간을 디비에 저장한다. 
-	@Override
-	public void keepLogin(String mem_id, String session_key, Date session_limit) {
-		memberDAO.keepLogin(mem_id, session_key, session_limit);
+		boolean result = (res==0) ?   true : false;
+		return result; 
 	}
 
 	// 회원 가입
@@ -50,8 +41,8 @@ public class MainServiceImpl implements MainService {
 	// 로그인
 	@Override
 	public MemberDTO login(String mem_id, String mem_pw) {
-		MemberDTO dto = memberDAO.login(new MemberDTO(mem_id, mem_pw));
-
+		MemberDTO dto = memberDAO.login(new MemberDTO(mem_id, mem_pw)); 
+		
 		if (dto == null) {
 			return null;
 		} else {
@@ -59,15 +50,4 @@ public class MainServiceImpl implements MainService {
 		}
 	}
 
-	@Override
-	public MemberDTO checkSessionValid(String sessionId) {
-		
-		MemberDTO dto = memberDAO.checkSessionValid(sessionId); 
-		
-		if(dto==null) {
-			return null; 
-		}else {
-			return dto; 
-		}
-	}
 }

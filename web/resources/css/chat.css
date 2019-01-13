@@ -55,6 +55,10 @@ button {
     cursor: pointer;
 }
 
+button#sendMessage {
+    font-size: 18px;
+}
+
 .room-list {
     background-color: #444753;
     display: flex;
@@ -97,12 +101,12 @@ button {
 }
 
 .room-list input {
-    border-radius: 3px;
+ 	border-radius: 3px;
     border: none;
-    padding: 14px;
+    padding: 10px;
     color: white;
     background: #6A6C75;
-    width: 90%;
+    width: 80%;
     font-size: 14px;
     position: absolute;
     top: 12px;
@@ -172,7 +176,7 @@ button {
     opacity: 1;
     border-radius: 0;
     margin: 0px;
-    width: 60%;
+    width: 62%;
     height: auto;
 }
 
@@ -181,6 +185,7 @@ button {
     padding-bottom: 15px;
     display: flex;
     background-color: #F2F5F8;
+    text-align : center;
     padding-top: 15px;
 }
 
@@ -193,6 +198,7 @@ button {
 
 .header button {
     flex-shrink: 0;
+    margin-right: 10px;
 }
 
 ::-webkit-scrollbar {
@@ -382,8 +388,6 @@ ul {
 
 .footer {
     background-color: #F2F5F8;
-    height: 90px;
-    padding: 15px;
 }
 
 .footer .text-box {
@@ -394,8 +398,8 @@ ul {
     margin-right: 5px;
     color: #545252;
     padding: 2px 5px;
-    line-height: 23px;
-    height: 23px;
+    line-height: 30px;
+    height:30px;
     display: inline-block;
     font-size: 14px;
     margin-top: 10px;
