@@ -15,7 +15,7 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="#">¿©±â Budong</a>
+			<a class="navbar-brand" href="#">ì—¬ê¸° Budong</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -26,22 +26,22 @@
 					<li class="nav-item active"><a class="nav-link"
 						href="/budong/">Home<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">¸Å¹°/½Ã¼¼</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">´º½º</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Á÷°Å·¡</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Ä¿¹Â´ÏÆ¼</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">ë§¤ë¬¼/ì‹œì„¸</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">ë‰´ìŠ¤</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">ì§ê±°ë˜</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">ì»¤ë®¤ë‹ˆí‹°</a></li>
 					<%
 						if (session.getAttribute("login") != null) {
 					%>
 					<li id="logoutBtn" class="nav-item"><a class="nav-link"
-						onclick="location.href='logout.do'">·Î±×¾Æ¿ô</a></li>
-					<!-- Ã¤ÆÃ ÄÁÅ×ÀÌ³Ê  -->
+						onclick="location.href='logout.do'">ë¡œê·¸ì•„ì›ƒ</a></li>
+					<!-- ì±„íŒ… ì»¨í…Œì´ë„ˆ  -->
 					
 					<div class="floating-chat">
 						<i class="fas fa-comments" aria-hidden="true"></i> <input
 							type="hidden" name="roomName" value="">
  	
-						<!-- ¹æ ¸ñ·Ï ÄÁÅ×ÀÌ³Ê  -->
+						<!-- ë°© ëª©ë¡ ì»¨í…Œì´ë„ˆ  -->
 						<div class="room-list" id="room-list">
 							<div class="search">
 								<input type="text" id="room-filter" placeholder="search" /> <i
@@ -100,22 +100,22 @@
 						</div>
 
 
-						<!--Ã¤ÆÃ ÄÁÅ×ÀÌ³Ê  -->
+						<!--ì±„íŒ… ì»¨í…Œì´ë„ˆ  -->
 						<div class="chat">
-							<!-- Ã¤ÆÃ Çì´õ  -->
+							<!-- ì±„íŒ… í—¤ë”  -->
 							<div class="header">
 								<span id="header-title" class="title"> <c:if
-										test="null eq ${roomName}"> ÀüÃ¼ Ã¤ÆÃ¹æ </c:if> <c:if
+										test="null eq ${roomName}"> ì „ì²´ ì±„íŒ…ë°© </c:if> <c:if
 										test="null != ${roomName}"> ${roomName} </c:if>
 								</span>
 								<button>
 									<i class="fa fa-times" aria-hidden="true"></i>
 								</button>
 							</div>
-							<!-- Ã¤ÆÃ ³»¿ë  -->
+							<!-- ì±„íŒ… ë‚´ìš©  -->
 							<ul class="chat-history">
 							</ul>
-							<!--¸Ş½ÃÁö Àü¼Û ÄÁÅ×ÀÌ³Ê-->
+							<!--ë©”ì‹œì§€ ì „ì†¡ ì»¨í…Œì´ë„ˆ-->
 							<div class="footer clearfix">
 								<div class="text-box" contenteditable="true" class="single-line"
 									disabled="true"></div>
@@ -127,7 +127,7 @@
 						} else {
 					%>
 					<li id="loginBtn" class="nav-item"><a class="nav-link"
-						href="#">·Î±×ÀÎ</a></li>
+						href="#">ë¡œê·¸ì¸</a></li>
 					<%
 						}
 					%>
@@ -138,7 +138,7 @@
 		<%
 			if (session.getAttribute("login") != null) {
 		%>
-		<div class="nav-user-name">${login.mem_id}´Ô</div>
+		<div class="nav-user-name">${login.mem_id}ë‹˜</div>
 		<%
 			}
 		%>
@@ -187,7 +187,7 @@
 		}
 		
 	</script> 
-	
+
 	<script>
 		var modal = document.getElementById('login-modal');
 		var loginBtn = document.getElementById('loginBtn');
@@ -207,19 +207,19 @@
 			}
 		}
 	</script>
-	
 	<script type="text/javascript"> 
+
 		var webSocket;
 
 		<%-- <%=R.requestToHostWithScheme("ws",R.mapping.request_web_socket)%> --%>
-		function connectWebSocket() {			/*À¥ ¼ÒÄÏ ¿¬°á */
+		function connectWebSocket() {			/*ì›¹ ì†Œì¼“ ì—°ê²° */
 			webSocket = new WebSocket('ws://localhost:8080/budong/chatting'); 
 			webSocket.onerror = function(event) {
 				onError(event);
 			};
 
 			webSocket.onopen = function(event) {
-				console.log(webSocket+"¿¬°á");
+				console.log(webSocket+"ì—°ê²°");
 				onOpen(event);
 			};
 
@@ -228,21 +228,21 @@
 			};
 			
 			webSocket.onclose=function(event) {
-				console.log(webSocket+"ÇØÁ¦");
+				console.log(webSocket+"í•´ì œ");
 				onClose(event);
 			};
 		} 
 		 
-		//»ó´ë¹æ¿¡°Ô¼­ ¸Ş½ÃÁö ¹ŞÀ½ 
+		//ìƒëŒ€ë°©ì—ê²Œì„œ ë©”ì‹œì§€ ë°›ìŒ 
 		function onMessage(event) {
 			console.log(event.data);
 
-			//JSON ¹Ş¾Æ¼­ ÆÄ½Ì 
+			//JSON ë°›ì•„ì„œ íŒŒì‹± 
 			var msg = JSON.parse(event.data);
 			var messagesContainer = $('.chat-history');
 
 			if (msg.type == "msg") {
-				if (msg.id != "${login.mem_id}") { //ÀÏ¹İ¸Ş½ÃÁö
+				if (msg.id != "${login.mem_id}") { //ì¼ë°˜ë©”ì‹œì§€
 					messagesContainer
 							.append([
 									'<li> <div class="message-data"> <span class="message-data-name">',
@@ -252,13 +252,13 @@
 									'</span> </div> <div class="message other-message">',
 									msg.text, '</div> </li>' ].join(''));
 				}
-			} else if (msg.type == "enterMsg") { //ÀÔÀå ¸Ş½ÃÁö 
-					messagesContainer.append([ '<li> <div class="message-data notice-message">', msg.id, '´ÔÀÌ ',
-							msg.roomName, '¹æ¿¡ ÀÔÀåÇÏ¼Ì½À´Ï´Ù.</div> </li>' ].join(''));
-			}else if(msg.type == "exitMsg") { //ÅğÀå ¸Ş½ÃÁö 
-				if(msg.id !="${login.mem_id}") { //³»È­¸é¿¡ Ãâ·ÂÇÏÁö ¾ÊÀ½ 
-					messagesContainer.append([ '<li>  <div class="message-data notice-message">', msg.id, '´ÔÀÌ ',
-						msg.roomName, '¹æÀ» ÅğÀåÇÏ¼Ì½À´Ï´Ù. </div> </li>' ].join(''));
+			} else if (msg.type == "enterMsg") { //ì…ì¥ ë©”ì‹œì§€ 
+					messagesContainer.append([ '<li> <div class="message-data notice-message">', msg.id, 'ë‹˜ì´ ',
+							msg.roomName, 'ë°©ì— ì…ì¥í•˜ì…¨ìŠµë‹ˆë‹¤.</div> </li>' ].join(''));
+			}else if(msg.type == "exitMsg") { //í‡´ì¥ ë©”ì‹œì§€ 
+				if(msg.id !="${login.mem_id}") { //ë‚´í™”ë©´ì— ì¶œë ¥í•˜ì§€ ì•ŠìŒ 
+					messagesContainer.append([ '<li>  <div class="message-data notice-message">', msg.id, 'ë‹˜ì´ ',
+						msg.roomName, 'ë°©ì„ í‡´ì¥í•˜ì…¨ìŠµë‹ˆë‹¤. </div> </li>' ].join(''));
 				}
 			}
 
@@ -269,7 +269,7 @@
 		}
 
 		function onOpen(event) {
-			console.log(webSocket+"Á¢¼Ó");
+			console.log(webSocket+"ì ‘ì†");
 		}
 
 		function onError(event) {
@@ -279,18 +279,19 @@
 		function onClose(event) {
 		}
 
-		//¸Ş½ÃÁö Àü¼Û 
+		//ë©”ì‹œì§€ ì „ì†¡ 
 		function send() {
 			var userInput = $('.text-box');
 			var newMessage = userInput.html().replace(/\<div\>|\<br.*?\>/ig,
 					'\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g);
+
 
 			if (!newMessage)
 				return;
 
 			var messagesContainer = $('.chat-history');
 
-			//¾ÆÀÌµğ, ÇÁ·ÎÇÊÀÌ¹ÌÁö, Ã¤ÆÃ³»¿ë, ¹æÀÌ¸§, º¸³½½Ã°£À» JSON¿¡ ³ÖÀ½ 			
+			//ì•„ì´ë””, í”„ë¡œí•„ì´ë¯¸ì§€, ì±„íŒ…ë‚´ìš©, ë°©ì´ë¦„, ë³´ë‚¸ì‹œê°„ì„ JSONì— ë„£ìŒ 			
 			var d = new Date();
 			var msg = {
 				type : "msg",
@@ -340,8 +341,8 @@
 
 			textInput.keydown(onMetaAndEnter).prop("disabled", false).focus();
 			element.off('click', openElement);
-			element.find('.header button').click(closeElement); //´İ±â¹öÆ° 
-			element.find('#sendMessage').click(send); //Àü¼Û¹öÆ°
+			element.find('.header button').click(closeElement); //ë‹«ê¸°ë²„íŠ¼ 
+			element.find('#sendMessage').click(send); //ì „ì†¡ë²„íŠ¼
 			messages.scrollTop(messages.prop("scrollHeight"));
 		}
 
@@ -363,21 +364,21 @@
 			}, 500);
 		}
 
-		//¿£ÅÍÅ° Àü¼Û
+		//ì—”í„°í‚¤ ì „ì†¡
 		function onMetaAndEnter(event) {
 			if (event.keyCode == 13) {
 				send();
 			}
 		}
 
-		//¹æ º¯°æ 
+		//ë°© ë³€ê²½ 
 		var room = $('.room-list li');
 		room.click(enterRoom);
 
-		//¹æ ÀÔÀå ½Ã À¥¼ÒÄÏ ¿¬°á ÇÑ´Ù. 
+		//ë°© ì…ì¥ ì‹œ ì›¹ì†Œì¼“ ì—°ê²° í•œë‹¤. 
 		function enterRoom() {
 			var title = $('#header-title');
-			$("[name='roomName']").val($(this).text().trim()); //Àü¼ÛÇÒ ¹æÀÌ¸§ ¼³Á¤   
+			$("[name='roomName']").val($(this).text().trim()); //ì „ì†¡í•  ë°©ì´ë¦„ ì„¤ì •   
 
 			$.ajax({
 				type : 'POST',
@@ -386,8 +387,8 @@
 				success : function(data) {
 					console.log(data);
 					title.text(data);
-					connectWebSocket();//À¥¼ÒÄÏ ¿¬°á
-					$('.chat-history').empty(); // ¹æ ÀÌµ¿½Ã ÀÌÀü ´ëÈ­±â·Ï »èÁ¦  
+					connectWebSocket();//ì›¹ì†Œì¼“ ì—°ê²°
+					$('.chat-history').empty(); // ë°© ì´ë™ì‹œ ì´ì „ ëŒ€í™”ê¸°ë¡ ì‚­ì œ  
 
 				},
 				error : function(data) {
@@ -397,7 +398,7 @@
 		}
 		
 		
-		/*¹æ ÀÌ¸§ °Ë»ö ÇÊÅÍ */
+		/*ë°© ì´ë¦„ ê²€ìƒ‰ í•„í„° */
 		(function() {
 			var searchFilter = {
 				options : {
@@ -405,7 +406,7 @@
 				},
 
 				init : function() {
-					//room-list ¾Æ·¡¿¡ 'name'Å¬·¡½º¸í°¡Áø ¿ä¼Òµé·Î ¸®½ºÆ® »ı¼º 
+					//room-list ì•„ë˜ì— 'name'í´ë˜ìŠ¤ëª…ê°€ì§„ ìš”ì†Œë“¤ë¡œ ë¦¬ìŠ¤íŠ¸ ìƒì„± 
 					var userList = new List('room-list', this.options);
 					var noItems = $('<li id="no-items-found">No items found</li>');
 
