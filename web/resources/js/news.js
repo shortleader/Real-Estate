@@ -18,6 +18,7 @@
 		
 		function getTitle(page){
 		var param = page;
+		
 			$.ajax({
 		    url:'/budong/title.news',
 		    data : "param=" + param,

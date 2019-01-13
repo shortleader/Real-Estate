@@ -42,6 +42,7 @@ public class NewsController {
 
     @RequestMapping(R.mapping.news_title)
     public ModelAndView goToTestPage(@RequestParam String param) {
+    	
         log.info("param : " + param);
         ModelAndView mav = new ModelAndView(R.path.news_title);
 
