@@ -97,26 +97,10 @@ public class MemberController {
 
 		if (memberDTO == null) { // 로그인 실패
 			logger.info("로그인 실패");
-			return "redirect:" + R.mapping.chat_home;
+			return "redirect:" + R.path.INDEX;
 		} else {
 			// 로그인 성공
 			logger.info("로그인 성공");
-
-			// 자동 로그인 선택한 경우 쿠키에 세션ID를 저장한다.
-			if (dto.isUseCookie()) {
-				Cookie cookie = new Cookie("loginCookie", session.getId());
-				cookie.setPath("/");
-				cookie.setMaxAge(60 * 60 * 24 * 7); // 7일 저장
-
-				resp.addCookie(cookie); // 쿠키를 저장한다.
-
-				// 디비 테이블에 사용자의 세션ID, 유효시간을 저장한다.
-				// 유효시간 = 현재시간 + 쿠키유효시간
-				int limitTime = 60 * 60 * 24 * 7;
-				Date session_limit = new Date(System.currentTimeMillis() + (limitTime * 1000));
-				service.keepLogin(memberDTO.getMem_id(), session.getId(), session_limit);
-
-			}
 
 			// 사용자정보를 세션에 저장
 			session.setAttribute("login", memberDTO);
@@ -124,7 +108,7 @@ public class MemberController {
 			
 			MemberDTO cdto = (MemberDTO) session.getAttribute("login");
 			logger.info(cdto.getMem_id());
-			return "redirect:" + R.mapping.chat_home;
+			return "redirect:" + R.mapping.INDEX;
 		}
 	}
 
@@ -136,6 +120,6 @@ public class MemberController {
 		session.removeAttribute("login");
 		session.invalidate();
 
-		return "redirect:" + R.mapping.chat_home;
+		return "redirect:" + R.mapping.INDEX;
 	}
 }

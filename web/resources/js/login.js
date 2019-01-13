@@ -96,6 +96,7 @@ $(function() {
 	});
 });
 
+
 // select box
 $(function() {
 	$('#nights').click(function() {

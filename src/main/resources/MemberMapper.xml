@@ -14,5 +14,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from budong_member where mem_id = #{mem_id}	
 	</select> 
 	
-	
 </mapper>
