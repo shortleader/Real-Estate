@@ -18,55 +18,60 @@ import javax.websocket.server.ServerEndpoint;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.budong.controller.ChatController;
 import com.budong.model.dto.MemberDTO;
+import com.budong.service.interfaces.ChatService;
 
 /**
  * 
- * @author wjddp 사용자 채팅
- *  - 사용자가 방 입장시 웹소켓 세션을 생성한다.
- *  - 방을 이동할경우 기존의 웹소켓 세션을 제거하고 , 새로운 웹소켓 세션을 생성한다.
+ * @author wjddp 사용자 채팅 - 사용자가 방 입장시 웹소켓 세션을 생성한다. - 방을 이동할경우 기존의 웹소켓 세션을 제거하고 ,
+ *         새로운 웹소켓 세션을 생성한다.
  * 
  */
-@ServerEndpoint(value = "/chatting", configurator = GetHttpSessionForWebSocket.class)
-public class WebSocketHandler {
+
+public class WebSocketHandler extends TextWebSocketHandler {
+	@Autowired
+	private ChatService chatService;
 
 	private static final Logger logger = LoggerFactory.getLogger(ChatController.class);
-	
-	private boolean closePrevSession = false; 
-	private HttpSession httpSession;
-	private static Map<Session, HttpSession> map = new ConcurrentHashMap<>(); // 웹소켓 세션, HttpSession
-	private static Map<Session, String> room = new ConcurrentHashMap<>(); // 웹소켓 세션, 방 이름
-	
-	// 클라이언트 연결
-	@OnOpen
-	public void onOpen(Session currentSession, EndpointConfig config) throws IOException {
+	private boolean closePrevSession = false;
+	private static Map<WebSocketSession, String> sessionList = new ConcurrentHashMap<>(); // 웹소켓 세션, id
+	private static Map<WebSocketSession, String> roomList = new ConcurrentHashMap<>(); // 웹소켓 세션, 방 이름
+
+	@Override
+	public void afterConnectionEstablished(WebSocketSession currentSession) throws Exception {
 		logger.info("======================================");
 		logger.info("WebSocket 연결 확인  : " + currentSession.toString());
 
-		// 웹소켓 연결시 httpSesion값 가져온다.
-		httpSession = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
+		Map<String, Object> map = currentSession.getAttributes();
+		MemberDTO mdto = (MemberDTO) map.get("login");
 
-		Set<Session> key = map.keySet();
-		Iterator<Session> it = key.iterator();
-		Session prevSession = null;
+		Set<WebSocketSession> key = sessionList.keySet();
+		Iterator<WebSocketSession> it = key.iterator();
+		WebSocketSession prevSession = null;
 
-		String roomName = (String) httpSession.getAttribute("roomName");
+		String prevRoomName = chatService.getPrevRoom(mdto.getMem_id());
+		String currentRoomName = chatService.getMemberRoom(mdto.getMem_id());
 
-		map.put(currentSession, httpSession);
-		room.put(currentSession, roomName); // 현재 웹소켓 세션, 방이름 저장
-		
+		sessionList.put(currentSession, mdto.getMem_id());
+		roomList.put(currentSession, currentRoomName); // 현재 웹소켓 세션, 방이름 저장
+
 		while (it.hasNext()) {
 			prevSession = it.next();
 
-			MemberDTO dto = (MemberDTO) map.get(prevSession).getAttribute("login");
-			MemberDTO dto2 = (MemberDTO) map.get(currentSession).getAttribute("login");
+			String id1 = (String) sessionList.get(prevSession);
+			String id2 = (String) sessionList.get(currentSession);
 
 			// 기존에 연결된 HTTP세션과 mem_id 값이 동일한데
 			// 서로 다른 웹 소켓 일경우
 			// 이전 웹소켓 연결을 종료 시킴
-			if (dto.getMem_id().equals(dto2.getMem_id()) && prevSession != currentSession) {
+			if (id1.equals(id2) && prevSession != currentSession) {
 				closePrevSession = true;
 				break;
 			}
@@ -74,100 +79,84 @@ public class WebSocketHandler {
 
 		if (closePrevSession) {
 			closePrevSession = false;
-			map.remove(prevSession);
-			sendRoomExitMsg();
+			sessionList.remove(prevSession);
+			sendRoomExitMsg(mdto.getMem_id(),prevRoomName);
 
-			room.remove(prevSession);
+			roomList.remove(prevSession);
 			prevSession.close();
-			sendEnterRoomMsg();
+			sendEnterRoomMsg(mdto.getMem_id(), currentRoomName);
 		} else {
-			sendEnterRoomMsg();
+			sendEnterRoomMsg(mdto.getMem_id(), currentRoomName);
 		}
 
-		logger.info("session  : " + currentSession.toString() + ", httpsession : " + map.get(currentSession).getId());
+		logger.info("session  : " + currentSession.toString() + ", httpsession : " + sessionList.get(currentSession));
+
 	}
 
-	// 메시지 전송
-	@OnMessage
-	public void onMessage(String message, Session session) throws IOException {
+	@Override
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		logger.info("======================================");
+		logger.info("WebSocket 연결 해제  : " + session.toString());
+		logger.info("session 수  : " + sessionList.size());
+	}
+
+	@Override
+	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		logger.info("\n WebSocket onMessage : " + message);
 
-		JSONObject jsonObject = new JSONObject(message);
+		JSONObject jsonObject = new JSONObject(message.getPayload());
 		String roomName = jsonObject.getString("roomName"); // 현재 방이름
 
-		Set<Session> key = room.keySet();
-		Iterator<Session> it = key.iterator();
+		Set<WebSocketSession> key = roomList.keySet();
+		Iterator<WebSocketSession> it = key.iterator();
 
 		// 같은 방에 있는 사용자에게 메시지를 전송
 		while (it.hasNext()) {
-			Session s = it.next();
-			if (!roomName.equals("") && room.get(s).equals(roomName)) {
-				s.getBasicRemote().sendText(message);
+			WebSocketSession s = it.next();
+			if (!roomName.equals("") && roomList.get(s).equals(roomName)) {
+				s.sendMessage(new TextMessage(message.getPayload()));
 			}
 		}
 	}
 
-	// 클라이언트와 연결 해제
-	@OnClose
-	public void onClose(Session session) throws IOException {
-		logger.info("======================================");
-		logger.info("WebSocket 연결 해제  : " + session.toString());
-		logger.info("session 수  : " + map.size());
-	}
-
-	// 에러 발생시 onClose 호출
-	@OnError
-	public void onError(Session session, Throwable exception) {
-		logger.error("WebSocket onError : " + exception.toString());
-	}
-
-	public void sendRoomExitMsg() throws IOException {
-		MemberDTO dto = (MemberDTO) httpSession.getAttribute("login");
-		String prevRoom = (String) httpSession.getAttribute("prevRoom");
-
-		/*
-		 * type : 메시지 타입
-		 *  id : 퇴장할 사람 id 
-		 *  roomName : 퇴장할 방 이름
+	public void sendRoomExitMsg(String id, String prevRoom) throws IOException {
+		/**
+		 * type : 메시지 타입 id : 퇴장할 사람 id roomName : 퇴장할 방 이름
 		 */
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.append("type", "exitMsg");
-		jsonObject.append("id", dto.getMem_id());
+		jsonObject.append("id", id);
 		jsonObject.append("roomName", prevRoom);
 
-		Set<Session> key = room.keySet();
-		Iterator<Session> it = key.iterator();
+		Set<WebSocketSession> key = roomList.keySet();
+		Iterator<WebSocketSession> it = key.iterator();
 
 		// 같은방에 있는 사용자에게 퇴장 메시지 전송
 		while (it.hasNext()) {
-			Session s = it.next();
-			if (!prevRoom.equals("") && room.get(s).equals(prevRoom)) {
-				s.getBasicRemote().sendText(jsonObject.toString());
+			WebSocketSession session = it.next();
+			if (!prevRoom.equals("") && roomList.get(session).equals(prevRoom)) {
+				session.sendMessage(new TextMessage(jsonObject.toString()));
 			}
 		}
 	}
 
-	public void sendEnterRoomMsg() throws IOException {
-		MemberDTO dto = (MemberDTO) httpSession.getAttribute("login");
-		String roomName = (String) httpSession.getAttribute("roomName");
+	public void sendEnterRoomMsg(String id, String roomName) throws IOException {
 		/*
-		 * type : 메시지 타입 
-		 * id : 입장한 사람 id 
-		 * roomName : 방 이름
+		 * type : 메시지 타입 id : 입장한 사람 id roomName : 방 이름
 		 */
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.append("type", "enterMsg");
-		jsonObject.append("id", dto.getMem_id());
+		jsonObject.append("id", id);
 		jsonObject.append("roomName", roomName);
 
 		// 같은 방 사용자에게 입장 메시지를 보낸다.
-		Set<Session> key = room.keySet();
-		Iterator<Session> it = key.iterator();
+		Set<WebSocketSession> key = roomList.keySet();
+		Iterator<WebSocketSession> it = key.iterator();
 
 		while (it.hasNext()) {
-			Session session = it.next();
-			if (!roomName.equals("") && room.get(session).equals(roomName)) {
-				session.getBasicRemote().sendText(jsonObject.toString());
+			WebSocketSession session = it.next();
+			if (!roomName.equals("") && roomList.get(session).equals(roomName)) {
+				session.sendMessage(new TextMessage(jsonObject.toString()));
 			}
 		}
 	}
