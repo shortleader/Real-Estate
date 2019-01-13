@@ -842,9 +842,25 @@ input {
 	background-position: center;
 }
 
+.user .close-btn {
+	text-align: right; 
+	padding :20px; 
+}
+.user .fa-times-circle {
+	font-size: 30px; 
+	color: white; 
+} 
+
+.user .fa-times-circle:hover{
+	font-size: 30px; 
+	color: #e9ecef; 
+	pointer: cursor; 
+} 
+
+
 .form-wrap {
 	width: 100%;
-	margin: 2em auto 0;
+	margin: 0.5em auto 0;
 }
 
 .form-wrap a {
@@ -856,6 +872,7 @@ input {
 .form-wrap a:hover {
 	color: #fff;
 }
+
 
 .form-wrap .tabs {
 	overflow: hidden;
@@ -1015,9 +1032,7 @@ input {
 	font-size: 14px;
 }
 
-.fa {
-	display: none;
-}
+
 /* MEDIUM VIEWPORT */
 @media only screen and (min-width: 40em) {
 	/* GLOBAL TRANSITION */
@@ -1249,7 +1264,6 @@ input {
 }
 /* FORM ELEMENTS */
 .form-wrap {
-	margin: 3em auto 0;
 }
 
 .form-wrap .tabs-content {
@@ -1324,7 +1338,6 @@ label[for=remember_me] {
 		height: 550px;
 	}
 	.form-wrap {
-		margin: 5em auto 0;
 	}
 	.form-wrap .tabs-content {
 		padding: 1.5em 4.9em;

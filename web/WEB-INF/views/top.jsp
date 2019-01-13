@@ -1,163 +1,214 @@
-<%@page import="org.springframework.web.context.annotation.SessionScope"%>
-<%@ page import="com.budong.R" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title></title>
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css"
-	integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css"
-	integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT"
-	crossorigin="anonymous">
 <link href='<c:url value="/resources/css/chat.css" />' rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script
 	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js'></script>
-<script>
-	$(function() {
-		$("#dialog").dialog({
-			autoOpen : false,
-			modal : true
-		});
 
-		$("#loginBtn").on("click", function(e) {
-			e.preventDefault();
-			$("#dialog").dialog("open");
-		});
-	});
-</script>
 </head>
 <body>
-	<div>
-		아이디 : ${login.mem_id} <br> 이름 : ${login.mem_name } <br> 프로필
-		사진 : <img src="<c:url value='/resources/images/${login.mem_img}'/>" /><br>
-		거주 지역 : ${login.mem_region}
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">여기 Budong</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a class="nav-link"
+						href="/budong/">Home<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">매물/시세</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">뉴스</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">직거래</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">커뮤니티</a></li>
+					<%
+						if (session.getAttribute("login") != null) {
+					%>
+					<li id="logoutBtn" class="nav-item"><a class="nav-link"
+						onclick="location.href='logout.do'">로그아웃</a></li>
+					<!-- 채팅 컨테이너  -->
+					
+					<div class="floating-chat">
+						<i class="fas fa-comments" aria-hidden="true"></i> <input
+							type="hidden" name="roomName" value="">
+ 	
+						<!-- 방 목록 컨테이너  -->
+						<div class="room-list" id="room-list">
+							<div class="search">
+								<input type="text" id="room-filter" placeholder="search" /> <i
+									class="fa fa-search"></i>
+							</div>
+							<ul class="list" id="ul-list">
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Vincent Porter</div>
+									</div></li>
+
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Aiden Chavez</div>
+									</div></li>
+
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Mike Thomas</div>
+									</div></li>
+
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_04.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Erica Hughes</div>
+									</div></li>
+
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_05.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Ginger Johnston</div>
+									</div></li>
+
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_06.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Tracy Carpenter</div>
+									</div></li>
+
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_07.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Christian Kelly</div>
+									</div></li>
+							</ul>
+						</div>
 
 
+						<!--채팅 컨테이너  -->
+						<div class="chat">
+							<!-- 채팅 헤더  -->
+							<div class="header">
+								<span id="header-title" class="title"> <c:if
+										test="null eq ${roomName}"> 전체 채팅방 </c:if> <c:if
+										test="null != ${roomName}"> ${roomName} </c:if>
+								</span>
+								<button>
+									<i class="fa fa-times" aria-hidden="true"></i>
+								</button>
+							</div>
+							<!-- 채팅 내용  -->
+							<ul class="chat-history">
+							</ul>
+							<!--메시지 전송 컨테이너-->
+							<div class="footer clearfix">
+								<div class="text-box" contenteditable="true" class="single-line"
+									disabled="true"></div>
+								<button id="sendMessage">send</button>
+							</div>
+						</div>
+					</div>
+					<%
+						} else {
+					%>
+					<li id="loginBtn" class="nav-item"><a class="nav-link"
+						href="#">로그인</a></li>
+					<%
+						}
+					%>
+				</ul>
+			</div>
 
-	</div>
-	<div align="center">
+		</div>
 		<%
 			if (session.getAttribute("login") != null) {
 		%>
-		<input type="button" value="로그아웃" onClick="location.href='logout.do'" />
-		<c:set var="userId" value="${login.mem_id}" />
-
-		<!--로그인 팝업 모달  -->
-		<div class="modal">this is a modal pop up</div>
-
-		<!-- 채팅 컨테이너  -->
-		<div class="floating-chat">
-			<i class="fas fa-comments" aria-hidden="true"></i> <input
-				type="hidden" name="roomName" value="">
-
-			<!-- 방 목록 컨테이너  -->
-			<div class="room-list" id="room-list">
-				<div class="search">
-					<input type="text" id="room-filter" placeholder="search" /> <i
-						class="fa fa-search"></i>
-				</div>
-				<ul class="list" id="ul-list">
-					<li class="clearfix"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg"
-						alt="avatar" />
-						<div class="about">
-							<div class="name">Vincent Porter</div>
-						</div></li>
-
-					<li class="clearfix"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg"
-						alt="avatar" />
-						<div class="about">
-							<div class="name">Aiden Chavez</div>
-						</div></li>
-
-					<li class="clearfix"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg"
-						alt="avatar" />
-						<div class="about">
-							<div class="name">Mike Thomas</div>
-						</div></li>
-
-					<li class="clearfix"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_04.jpg"
-						alt="avatar" />
-						<div class="about">
-							<div class="name">Erica Hughes</div>
-						</div></li>
-
-					<li class="clearfix"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_05.jpg"
-						alt="avatar" />
-						<div class="about">
-							<div class="name">Ginger Johnston</div>
-						</div></li>
-
-					<li class="clearfix"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_06.jpg"
-						alt="avatar" />
-						<div class="about">
-							<div class="name">Tracy Carpenter</div>
-						</div></li>
-
-					<li class="clearfix"><img
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_07.jpg"
-						alt="avatar" />
-						<div class="about">
-							<div class="name">Christian Kelly</div>
-						</div></li>
-				</ul>
-			</div>
-
-
-			<!--채팅 컨테이너  -->
-			<div class="chat">
-				<!-- 채팅 헤더  -->
-				<div class="header">
-					<span id="header-title" class="title"> <c:if
-							test="null eq ${roomName}"> 전체 채팅방 </c:if> <c:if
-							test="null != ${roomName}"> ${roomName} </c:if>
-					</span>
-					<button>
-						<i class="fa fa-times" aria-hidden="true"></i>
-					</button>
-				</div>
-				<!-- 채팅 내용  -->
-				<ul class="chat-history">
-				</ul>
-				<!--메시지 전송 컨테이너-->
-				<div class="footer clearfix">
-					<div class="text-box" contenteditable="true" class="single-line"
-						disabled="true"></div>
-					<button id="sendMessage">send</button>
-				</div>
-			</div>
-		</div>
-		<%
-			} else {
-		%>
-		<input type="button" value="로그인" id="loginBtn" />
-
-		<!--로그인/회원가입 팝업 모달-->
-		<div id="dialog">
-			<c:import url="/loginHome.do" charEncoding="UTF-8" />
-		</div>
-
+		<div class="nav-user-name">${login.mem_id}님</div>
 		<%
 			}
 		%>
+	</nav>
+
+	<div id="login-modal">
+		<c:import url="./member/memberLogin.jsp">
+		</c:import>
 	</div>
+	
+	<c:set var="chatList" value="${chatList}"></c:set>
+	<script> 
+		window.onload = loadChatInfo();
+		
+		function loadChatInfo(){
+			$.ajax({
+				type : 'POST',
+				data : {
+					"mem_id" : "${login.mem_id}"
+				}, 
+				url : "checkRoom.do",
+				success : function(data) { 
 
+				},error : function(data) {
+					console.log("failed loading room name ");
+				}
+			});
+		}
+		
+		function loadChatHistory(roomName) {
+			$.ajax({
+				type : 'POST', 
+				data : roomName,
+				url : "chatList.do", 
+				success : function(data) {
+					setChatHistory(data);
+				}, 
+				error : function(data) {
+					console.log("failed loading chat history"); 
+				}
+			});
+		}
+		
+		function setChatHistory(data) {
+			console.log('${chatList}');
+		}
+		
+	</script> 
 
-	<script type="text/javascript">
+	<script>
+		var modal = document.getElementById('login-modal');
+		var loginBtn = document.getElementById('loginBtn');
+		var closeModal = document.getElementById('modal-close');
+
+		loginBtn.onclick = function() {
+			modal.style.display = "block";
+		}
+
+		closeModal.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		window.onclick = function(e) {
+			if (e.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
+	<script type="text/javascript"> 
+
 		var webSocket;
 
 		<%-- <%=R.requestToHostWithScheme("ws",R.mapping.request_web_socket)%> --%>
@@ -232,8 +283,8 @@
 		function send() {
 			var userInput = $('.text-box');
 			var newMessage = userInput.html().replace(/\<div\>|\<br.*?\>/ig,
-					'\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g,
-					'<br>');
+					'\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g);
+
 
 			if (!newMessage)
 				return;
@@ -373,4 +424,6 @@
 			searchFilter.init();
 		})();
 	</script>
+
+</body>
 </html>
