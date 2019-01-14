@@ -44,6 +44,14 @@ public class R {
 
         public static final String real_estate = "dealInfo/RealEstate";
         public static final String apartment_deal_info = "dealInfo/APTDealList";
+        public static final String board_home = "board/BoardList";
+        public static final String board_writeform = "board/BoardWrite";
+        public static final String board_content = "board/BoardContent";
+        public static final String board_updateform = "board/BoardUpdateForm";
+        public static final String board_replyform = "board/BoardReply";
+        
+       
+        
     }
 
     public static class controller {
@@ -51,6 +59,9 @@ public class R {
         public static final String main = "/";
         public static final String news = "news";
         public static final String real_estate_deal_info = "dealInfo";
+
+        public static final String board = "board";
+       
     }
 
     public static class mapping {
@@ -75,6 +86,16 @@ public class R {
         public static final String khw_main = "/khw";
         public static final String news_title = "/title.news";
         public static final String news_contents = "/content.news";
+        
+        public static final String board_home = "/boardList.do";
+        public static final String board_writeform = "/boardWrite.do";
+        public static final String board_insert = "/boardInsert.do";
+        public static final String board_delete = "/boardDelete.do";
+        public static final String board_content = "/boardContent.do";
+        public static final String board_update = "/boardUpdate.do";
+        public static final String board_updateform = "/boardUpdateForm.do";
+        public static final String board_replyform = "/boardReplyForm.do";
+        
     }
 
     public static class rest {
