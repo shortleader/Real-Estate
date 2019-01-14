@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.budong.model.interfaces.TradeDAO">
+
+	<insert id="insertTrade" parameterType="com.budong.model.dto.TradeDTO" >
+		insert into budong_trade values (seq_trade.nextval, #{type}, #{trade_type},
+		#{location}, #{area}, #{dong}, #{ho}, #{floor}, #{max_floor}, #{price}, #{image}, #{phone})
+	</insert>
+	
+	<select id="selectTrade" resultType="com.budong.model.dto.TradeDTO">
+		select * from budong_trade
+	</select>
+
+
+
+</mapper>
