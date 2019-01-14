@@ -83,6 +83,7 @@ public class RealEasteDealInfoDAOImpl implements RealEsateDealInfoDAO{
 				dbFactory = DocumentBuilderFactory.newInstance();
 				dBuilder = dbFactory.newDocumentBuilder();
 				doc = dBuilder.parse(url);
+				log.info("url : " + url);
 				//root tag 가져오기
 				doc.getDocumentElement().normalize();
 				

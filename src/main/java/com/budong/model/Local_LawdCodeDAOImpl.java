@@ -10,6 +10,7 @@ import com.budong.model.dto.Local_LawdCodeDTO;
 public class Local_LawdCodeDAOImpl implements com.budong.model.interfaces.Local_LawdCodeDAO {
 
 	private final SqlSessionTemplate mybatis;
+	private static final String Namespace = "com.budong.model.interfaces.Local_LawdCodeDAO.";
 
     @Autowired
     public Local_LawdCodeDAOImpl(SqlSessionTemplate mybatis) {
@@ -18,7 +19,6 @@ public class Local_LawdCodeDAOImpl implements com.budong.model.interfaces.Local_
 
 	@Override
 	public String getLawdCode(Local_LawdCodeDTO dto) {
-        return mybatis.selectOne("com.budong.model.interfaces.Local_LawdCodeDAO.lawdCode", dto);
+        return mybatis.selectOne(Namespace + "lawdCode", dto);
 	}
-
 }

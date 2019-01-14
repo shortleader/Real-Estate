@@ -109,7 +109,4 @@ public class RealEstateAPTDealInfoDTO {
 	public void setLayer(int layer) {
 		this.layer = layer;
 	}
-	
-	
-
 }
