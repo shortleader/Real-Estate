@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -9,128 +9,112 @@
 	<script type="text/javascript"    src="<c:url value='/resources/js/dealInfo/more_list.js'/>"></script>
 	<link type="text/css" rel="stylesheet" href="<c:url value='/resources/css/dealInfo/list_item.css'/>" media="screen" />
 	
-<meta charset="EUC-KR">
-<title>@@@ ¾ÆÆÄÆ®  ½Ã¼¼  Á¤º¸  @@@</title>
+	<script type="text/javascript" src="<c:url value='/resources/js/dealInfo/raphael_min.js'/>"></script>
+	<script src="<c:url value='/resources/js/dealInfo/seoul-local.js'/>" type="text/javascript" charset="UTF-8"></script>
+	<link type="text/css" rel="stylesheet" href="<c:url value='/resources/css/dealInfo/local.css'/>" />	
+<meta charset="utf-8">
+<title>ë¶€ë™ì‚° ì—¬ê¸°ì–´ë•Œ | ${lawd_name} ê±°ë˜ë‚´ì—­</title>
+
 </head>
 <body>
 	<div class="contents" align="center">
-		µµ½ÃÄÚµå  : ${lawd_cd}		<br>
-		°Ë»ö  ³â¿ù : ${deal_ymd}
+		<form name="f" method="post" action="apt_dealInfo.do">
+				
+			<div class="mapArea">
+			    <div id="locName"></div>
+			    <div id="paper"></div>
+			</div>
+			
+			<br><br>
+						
+			ì§€ì—­  : <input type="text" name="lawd_name" value="ê¸ˆì²œêµ¬" >
+			
+			<br/>
+			ê¸°ê°„  : <input type="month" name="deal_ymd">	<br/>
+
+			
+			<input type="submit" value="ok">
+				
+		</form>
+		<div id="js-load" class="main">
+			<ul class="lists">
+				<c:choose>
+					<c:when test="${!empty list}">
+						<c:forEach var="item" items="${list}" varStatus="status">
+
+							<!-- item list ë¿Œë¦¬ê¸° -->
+							<li class="lists__item js-load">
+								<table border="0" class="table_trade">
+									<tr class="tr_items m1">
+										<td width="100" rowspan="2">
+											<span>${item.apartment }</span><br>
+										</td>
+										
+										<td rowspan="2" width="70">
+											<em class="em_item1"> 
+
+												<span class="span_circle m1">ê±°ë˜ì¼<br>
+												${item.year}.${item.month}.${item.day }.
+												</span>
+											</em>
+										</td>
+										
+										<td>
+											<strong>ê±´ì¶•ë…„ì¼</strong> ${item.build_year }ë…„  
+										</td>
+
+										<td>
+											<strong>Info</strong> ${item.exclusive_area}ã¡  ${item.layer}ì¸µ
+										</td>
+									</tr>
+
+									<tr class="tr_items m2">
+                    <td>
+                    <em	class="em_item2"> <span class="span_circle m2">ê±°ë˜ê°€</span>
+												${item.transaction_amount }ë§Œ
+											</em>
+                    </td>
+										<td>ì„œìš¸ì‹œ ${lawd_name} ${item.legal_dong}<br></td>
+
+									</tr>
+								</table>
+							</li>
+							<%-- <li class="lists__item js-load">
+								<table border="1">
+									<tr>
+										<td>${status.count }</td>
+										<td>${item.build_year }</td>
+										<td>${item.year }</td>
+										<td>${item.legal_dong }</td>
+										<td>${item.apartment }</td>
+										<td>${item.month }</td>
+										<td>${item.day }</td>
+										<td>${item.exclusive_area }</td>
+										<td>${item.area_code}</td>
+										<td>${item.layer }</td>
+										<td>${item.transaction_amount }</td>
+									</tr>
+								</table>							
+							</li> --%>
+						</c:forEach>
+					</c:when>
+
+					<%-- ê°€ì ¸ì˜¨ ê°’ì´ ì—†ì„ë•Œ  --%> 
+					<c:otherwise>
+						<p>ì •ë³´ê°€  ì—†ìŠµë‹ˆë‹¤...</p>
+					</c:otherwise>
+				</c:choose>
+			</ul>
+		</div>
+			
+		<!-- ë”ë³´ê¸° ë²„íŠ¼ -->	
+		<br>
+   		<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">ë”ë³´ê¸°</a> </div>
+
 	
-		<table border="1">
-			<!-- Å×ÀÌºí thead ¸Ó¸®¸» -->
-			<thead>
-				<tr>
-					<th>No</th>
-					<th>°ÇÃà³âµµ</th>
-					<th>³â</th>
-					<th>¹ıÁ¤µ¿</th>
-					<th>¾ÆÆÄÆ®</th>
-					<th>¿ù</th>
-					<th>ÀÏ</th>
-					<th>Àü¿ë¸éÀû</th>
-					<th>Áö¿ªÄÚµå</th>
-					<th>Ãş</th>
-					<th>°Å·¡±İ¾×</th>
-				</tr>
-			</thead>
-			<!-- item list »Ñ¸®±â -->
-		<c:choose>
-			<c:when test="${!empty list}">
-				<c:forEach var="item" items="${list}" varStatus="status">
-					<tr id="js-load" class="main">
-						<td class="td__item js-load">${status.count }</td>
-						<td class="td__item js-load">${item.build_year }</td>
-						<td class="td__item js-load">${item.year }</td>
-						<td class="td__item js-load">${item.legal_dong }</td>
-						<td class="td__item js-load">${item.apartment }</td>
-						<td class="td__item js-load">${item.month }</td>
-						<td class="td__item js-load">${item.day }</td>
-						<td class="td__item js-load">${item.exclusive_area }</td>
-						<td class="td__item js-load">${item.area_code }</td>
-						<td class="td__item js-load">${item.layer }</td>
-						<td class="td__item js-load">${item.transaction_amount }</td>
-					</tr>
-				</c:forEach>
-				<br>
-			</c:when>
-			<c:otherwise>
-					<tr>
-						<td align="center" colspan="11">
-							Á¤º¸°¡  ¾ø½À´Ï´Ù...
-						</td>
-					</tr>
-			</c:otherwise>
-		</c:choose>
-		</table>
-		
 		<br>
-   		<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">´õº¸±â</a> </div>
-		
-		
+		<a href="realEstate.do"></a>
 		<br>
-		<a href="realEstate.do">µ¹¾Æ°¡±â</a>
-		<br>
-		
-		<table border="1">
-			<!-- Å×ÀÌºí thead ¸Ó¸®¸» -->
-			<thead>
-				<tr>
-					<th>No</th>
-					<th>°ÇÃà³âµµ</th>
-					<th>³â</th>
-					<th>¹ıÁ¤µ¿</th>
-					<th>¾ÆÆÄÆ®</th>
-					<th>¿ù</th>
-					<th>ÀÏ</th>
-					<th>Àü¿ë¸éÀû</th>
-					<th>Áö¿ªÄÚµå</th>
-					<th>Ãş</th>
-					<th>°Å·¡±İ¾×</th>
-				</tr>
-			</thead>
-			
-			<tr>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-			 				<td>	what's  problem</td>
-			 				<td>	what's  problem</td>
-			 
-			</tr>
-			<tr style="display: none">
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-			 	<td>	what's  problem</td>
-			 
-			</tr>
-			<tr style="display: block;">
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-				<td>	what's  problem</td>
-			 	<td>	what's  problem</td>
-			</tr>
-			
-		</table>
 	</div>
 </body>
 </html>

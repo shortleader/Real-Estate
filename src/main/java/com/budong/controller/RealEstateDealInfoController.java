@@ -1,8 +1,10 @@
 package com.budong.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.budong.R;
 import com.budong.util.DistrictCode;
@@ -23,44 +25,62 @@ import org.springframework.web.servlet.ModelAndView;
 public class RealEstateDealInfoController {
 	private static final Logger log = LoggerFactory.getLogger(RealEstateDealInfoController.class);
 
-	private final RealEstateDealInfoService realEstateDealInfoService;
-
 	private final DistrictCodeSet districtCodeSet;
-
+	private final RealEstateDealInfoService realEstateDealInfoService;
+	
 	@Autowired
 	public RealEstateDealInfoController(DistrictCodeSet districtCodeSet, RealEstateDealInfoService realEstateDealInfoService) {
 		this.districtCodeSet = districtCodeSet;
 		this.realEstateDealInfoService = realEstateDealInfoService;
 	}
 
-	@RequestMapping(value= R.mapping.real_estate)
+	@RequestMapping(value="/")
 	public String index(HttpServletRequest req) {
 		log.info("path [/dealInfo/realState.do] status ok");
 		return R.path.real_estate;
 	}
 	
 	@RequestMapping(value= R.mapping.apartment_deal_info)
-	public ModelAndView listInfo(@RequestParam("deal_ymd") String str_deal_ymd, @RequestParam String lawd_name) {
+	public String listInfo(HttpServletRequest  req, HttpServletResponse resp,
+			String str_dealYmd, String lawd_name) {	
+		
+		log.info("path [/dealInfo/apt_dealInfo.do] status ok");
+		//Korean 처리
+		try {
+			req.setCharacterEncoding("utf-8");
+			resp.setContentType("utf-8");
+			log.info("encoding  : " + req.getCharacterEncoding());
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 
-	    int deal_ymd = Integer.parseInt(str_deal_ymd.replaceAll("-",""));
-
+		str_dealYmd = req.getParameter("deal_ymd");
+		lawd_name = req.getParameter("lawd_name");
+		
+	/*	if(str_dealYmd == null) {
+			return "";	//return errpage
+		}
+	*/	
+		str_dealYmd = str_dealYmd.replaceAll("-", "");
+		
+		int deal_ymd = Integer.parseInt(str_dealYmd);
+		//법정동  코드
+		req.setAttribute("lawd_name", lawd_name);
+		log.info("lawd_name : " + lawd_name);
 		// 한글  -> code로  변환
 		// 법정동  코드  db 접근해서  가져옴..
 		String lawd_cd = realEstateDealInfoService.getLawdCode(lawd_name);
-
-//		log.info("lawd_cd = " + lawd_cd);
 		// go service
 		List<RealEstateAPTDealInfoDTO> v = realEstateDealInfoService.listAPTDeal(lawd_cd, deal_ymd);
 
 		// page에  아파트  실거래가 정보  dto setAttribute
-        ModelAndView mav = new ModelAndView(R.path.apartment_deal_info);
-        mav.addObject("list", v);
+		req.setAttribute("list", v);
 /*
 		log.debug("deal_ymd = " + deal_ymd);
 		log.debug("lawd_cd = " + lawd_cd);
 		log.debug("v size : " + v.size());
 */
-		return mav;
+		return R.path.apartment_deal_info;
 	}
 
 	/** graph test section */
@@ -84,6 +104,5 @@ public class RealEstateDealInfoController {
 
 		return new ModelAndView(R.path.graph_year_districtCode_avg, parameters);
 	}
-
-	/* graph test section end*/
 }
+	/* graph test section end*/

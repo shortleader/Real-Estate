@@ -22,9 +22,7 @@
 </head>
 <body>
 	<jsp:include page="loading.jsp"></jsp:include>
-	
 	<c:import url="../top.jsp"></c:import>
-	
 	<c:import url="page.jsp"></c:import>
 	<c:import url="../bottom.jsp"></c:import>
 	
