@@ -117,7 +117,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 		while (it.hasNext()) {
 			WebSocketSession s = it.next();
 			if (!roomName.equals("") && roomList.get(s).equals(roomName)) { 
-				chatService.saveChat(new ChatDTO(id,roomName,content));
+				//chatService.saveChat(new ChatDTO(id,roomName,content));
 				s.sendMessage(new TextMessage(message.getPayload()));
 			}
 		}

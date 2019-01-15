@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +9,7 @@
 <script
 	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js'></script>
+
 
 </head>
 <body>
@@ -26,17 +27,19 @@
 					<li class="nav-item active"><a class="nav-link"
 						href="/budong/">Home<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">매물/시세</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">뉴스</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">직거래</a></li>
+					<li class="nav-item"><a class="nav-link" href="/budong/TradeList.do">매물/시세</a></li>
+					<li class="nav-item"><a class="nav-link" href="/budong/khw">뉴스</a></li>
+					<li class="nav-item"><a class="nav-link" href="/budong/testTrade.do">직거래</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">커뮤니티</a></li>
 					<%
 						if (session.getAttribute("login") != null) {
 					%>
 					<li id="logoutBtn" class="nav-item"><a class="nav-link"
 						onclick="location.href='logout.do'">로그아웃</a></li>
+						
+						
+						
 					<!-- 채팅 컨테이너  -->
-					
 					<div class="floating-chat">
 						<i class="fas fa-comments" aria-hidden="true"></i> <input
 							type="hidden" name="roomName" value="">
@@ -99,7 +102,6 @@
 							</ul>
 						</div>
 
-
 						<!--채팅 컨테이너  -->
 						<div class="chat">
 							<!-- 채팅 헤더  -->
@@ -145,8 +147,9 @@
 	</nav>
 
 	<div id="login-modal">
-		<c:import url="./member/memberLogin.jsp">
-		</c:import>
+		<jsp:include page="member/memberLogin.jsp"></jsp:include>
+		<%-- <c:import url="member/memberLogin.jsp">
+		</c:import> --%>
 	</div>
 	
 	<c:set var="chatList" value="${chatList}"></c:set>
@@ -187,7 +190,7 @@
 		}
 		
 	</script> 
-
+	
 	<script>
 		var modal = document.getElementById('login-modal');
 		var loginBtn = document.getElementById('loginBtn');
@@ -207,13 +210,13 @@
 			}
 		}
 	</script>
+	
 	<script type="text/javascript"> 
-
 		var webSocket;
 
 		<%-- <%=R.requestToHostWithScheme("ws",R.mapping.request_web_socket)%> --%>
 		function connectWebSocket() {			/*웹 소켓 연결 */
-			webSocket = new WebSocket('ws://localhost:8080/budong/chatting'); 
+			webSocket = new WebSocket('ws://localhost:8090/budong/chatting'); 
 			webSocket.onerror = function(event) {
 				onError(event);
 			};
@@ -284,7 +287,6 @@
 			var userInput = $('.text-box');
 			var newMessage = userInput.html().replace(/\<div\>|\<br.*?\>/ig,
 					'\n').replace(/\<\/div\>/g, '').trim().replace(/\n/g);
-
 
 			if (!newMessage)
 				return;
@@ -424,6 +426,7 @@
 			searchFilter.init();
 		})();
 	</script>
-
+	
+	
 </body>
 </html>

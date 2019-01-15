@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>·Î±×ÀÎ</title>
+<meta charset="UTF-8">
+<title>ë¡œê·¸ì¸</title>
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<!--fontawesome-->
+<!--fontawesome-->/
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/solid.css"
 	integrity="sha384-+0VIRx+yz1WBcCTXBkVQYIBVNEFH1eP6Zknm16roZCyeNg2maWEpk/l/KsyFKs7G"
@@ -102,18 +102,18 @@
 					<div class="tabs-content">
 						<!-- TABS CONTENT LOGIN -->
 						<div id="login-tab-content" class="active">
-							<!-- ·Î±×ÀÎ Æû  -->
+							<!-- ë¡œê·¸ì¸ í¼  -->
 
 							<form id="myform" name="loginForm" class="login-form"
 								method="post" action="login.do">
 								<input type="text" class="input" id="mem_id" name="mem_id"
 									autocomplete="off" placeholder="Username">
-								<p id="login-id-validation" class="validation-text">À¯È¿ÇÏÁö
-									¾Ê½À´Ï´Ù</p>
+								<p id="login-id-validation" class="validation-text">ìœ íš¨í•˜ì§€
+									ì•ŠìŠµë‹ˆë‹¤</p>
 								<input type="password" class="input" name="mem_pw" id="mem_pw"
 									autocomplete="off" placeholder="Password">
-								<p id="login-pw-validation" class="validation-text">À¯È¿ÇÏÁö
-									¾Ê½À´Ï´Ù</p>
+								<p id="login-pw-validation" class="validation-text">ìœ íš¨í•˜ì§€
+									ì•ŠìŠµë‹ˆë‹¤</p>
 								<!-- <input type="checkbox" class="checkbox" checked id="remember_me"
 									name="useCookie" value="true"> <label for="remember_me">Remember
 									me </label> -->
@@ -128,13 +128,13 @@
 							</div>
 						</div>
 
-						<!--È¸¿ø°¡ÀÔ ÅÇ  -->
+						<!--íšŒì›ê°€ìž… íƒ­  -->
 						<div id="signup-tab-content">
 
 							<form class="signup-form" name="signUpForm"
 								action="insertMember.do" method="post"
 								enctype="multipart/form-data">
-								<!--ÇÁ·ÎÇÊ ÀÌ¹ÌÁö  -->
+								<!--í”„ë¡œí•„ ì´ë¯¸ì§€  -->
 								<div class="img-container">
 									<div class="avatar-upload">
 										<div class="avatar-edit">
@@ -153,36 +153,36 @@
 
 								<input type="text" class="input" id="user_id" name="mem_id"
 									autocomplete="off" placeholder="ID">
-								<p id="id-validation" class="validation-text">À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù</p>
+								<p id="id-validation" class="validation-text">ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤</p>
 								<input type="text" class="input" id="user_name" name="mem_name"
 									autocomplete="off" placeholder="Username">
-								<p id="name-validation" class="validation-text">À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù</p>
+								<p id="name-validation" class="validation-text">ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤</p>
 								<input type="password" class="input" id="user_pass"
 									name="mem_pw" autocomplete="off" placeholder="Password">
-								<p id="pw-validation" class="validation-text">À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù</p>
+								<p id="pw-validation" class="validation-text">ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤</p>
 
 								<!--select box  -->
 								<div class="column-6 form-select">
 									<select name="mem_region" class="select-box-region">
-										<option value="" disabled="disabled" selected="selected">°ÅÁÖ
-											Áö¿ªÀ» ¼±ÅÃÇØ ÁÖ¼¼¿ä</option>
-										<option value="seoul">¼­¿ï½Ã</option>
-										<option value="kyeongki">°æ±âµµ</option>
-										<option value="incheon">ÀÎÃµ½Ã</option>
-										<option value="busan">ºÎ»ê½Ã</option>
-										<option value="daejeon">´ëÀü½Ã</option>
-										<option value="daegu">´ë±¸½Ã</option>
-										<option value="ulsan">¿ï»ê½Ã</option>
-										<option value="saejong">¼¼Á¾½Ã</option>
-										<option value="kwangju">±¤ÁÖ½Ã</option>
-										<option value="kangwon">°­¿øµµ</option>
-										<option value="chungbuk">ÃæÃ»ºÏµµ</option>
-										<option value="chungname">ÃæÃ»³²µµ</option>
-										<option value="kyungbuk">°æ»óºÏµµ</option>
-										<option value="kyungnam">°æ»ó³²µµ</option>
-										<option value="jeonbuk">Àü¶óºÏµµ</option>
-										<option value="jeonnam">Àü¶ó³²µµ</option>
-										<option value="jeju">Á¦ÁÖµµ</option>
+										<option value="" disabled="disabled" selected="selected">ê±°ì£¼
+											ì§€ì—­ì„ ì„ íƒí•´ ì£¼ì„¸ìš”</option>
+										<option value="seoul">ì„œìš¸ì‹œ</option>
+										<option value="kyeongki">ê²½ê¸°ë„</option>
+										<option value="incheon">ì¸ì²œì‹œ</option>
+										<option value="busan">ë¶€ì‚°ì‹œ</option>
+										<option value="daejeon">ëŒ€ì „ì‹œ</option>
+										<option value="daegu">ëŒ€êµ¬ì‹œ</option>
+										<option value="ulsan">ìš¸ì‚°ì‹œ</option>
+										<option value="saejong">ì„¸ì¢…ì‹œ</option>
+										<option value="kwangju">ê´‘ì£¼ì‹œ</option>
+										<option value="kangwon">ê°•ì›ë„</option>
+										<option value="chungbuk">ì¶©ì²­ë¶ë„</option>
+										<option value="chungname">ì¶©ì²­ë‚¨ë„</option>
+										<option value="kyungbuk">ê²½ìƒë¶ë„</option>
+										<option value="kyungnam">ê²½ìƒë‚¨ë„</option>
+										<option value="jeonbuk">ì „ë¼ë¶ë„</option>
+										<option value="jeonnam">ì „ë¼ë‚¨ë„</option>
+										<option value="jeju">ì œì£¼ë„</option>
 									</select>
 								</div>
 

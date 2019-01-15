@@ -66,20 +66,21 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	@Override
-	public String getContent(String url) {
-		String val = "";
+	public NewsDTO getContent(String url) {
+		NewsDTO dto = new NewsDTO();
 		Document doc;
 		try {
 			doc = Jsoup.connect(url).get();
-			Elements elem = doc.select("#articleBody");
+			Elements elem = doc.select("#content");
 			for (Element e : elem) {
-				val += e.toString();
+				//log.debug("WT : "+e.getElementsByClass("article_body").html());
+				dto.setTitle(e.getElementsByClass("article_header").select("h3").text());
+				dto.setContent(e.getElementsByClass("article_body").html());
 			}
-			// log.info(val);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return val;
+		return dto;
 	}
 
 }

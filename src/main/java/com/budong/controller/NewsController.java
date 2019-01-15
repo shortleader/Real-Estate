@@ -59,7 +59,7 @@ public class NewsController {
         ModelAndView mav = new ModelAndView(R.path.news_contents);
         String change = param.replaceAll("!", "&");
 
-        mav.addObject("newsbody", newsService.getContent(change));
+        mav.addObject("news", newsService.getContent(change));
         return mav;
     }
 
