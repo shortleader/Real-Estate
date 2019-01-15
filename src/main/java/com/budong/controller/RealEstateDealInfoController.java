@@ -34,7 +34,7 @@ public class RealEstateDealInfoController {
 		this.realEstateDealInfoService = realEstateDealInfoService;
 	}
 
-	@RequestMapping(value= R.mapping.real_estate)
+	@RequestMapping(value="/")
 	public String index(HttpServletRequest req) {
 		log.info("path [/dealInfo/realState.do] status ok");
 		return R.path.real_estate;
@@ -57,6 +57,10 @@ public class RealEstateDealInfoController {
 		str_dealYmd = req.getParameter("deal_ymd");
 		lawd_name = req.getParameter("lawd_name");
 		
+	/*	if(str_dealYmd == null) {
+			return "";	//return errpage
+		}
+	*/	
 		str_dealYmd = str_dealYmd.replaceAll("-", "");
 		
 		int deal_ymd = Integer.parseInt(str_dealYmd);

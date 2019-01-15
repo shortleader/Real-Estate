@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Å×½ºÆ®  Á¤º¸</title>
+<meta charset="utf-8">
+<title>í…ŒìŠ¤íŠ¸  ì •ë³´</title>
 	<script type="text/javascript" src="<c:url value='/resources/js/dealInfo/raphael_min.js'/>"></script>
 	<script src="//code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="<c:url value='/resources/js/dealInfo/seoul-local.js'/>" type="text/javascript" charset="UTF-8"></script>
@@ -24,10 +24,10 @@
 			
 			<br><br>
 						
-			Áö¿ª  : <input type="text" name="lawd_name" value="±ÝÃµ±¸" >
+			ì§€ì—­  : <input type="text" name="lawd_name" value="ê¸ˆì²œêµ¬" >
 			
 			<br/>
-			±â°£  : <input type="month" name="deal_ymd">	<br/>
+			ê¸°ê°„  : <input type="month" name="deal_ymd">	<br/>
 			
 			<input type="submit" value="ok">
 			
