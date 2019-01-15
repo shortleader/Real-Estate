@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -11,8 +12,9 @@
 	<script type="text/javascript" src="<c:url value='/resources/js/dealInfo/raphael_min.js'/>"></script>
 	<script src="<c:url value='/resources/js/dealInfo/seoul-local.js'/>" type="text/javascript" charset="UTF-8"></script>
 	<link type="text/css" rel="stylesheet" href="<c:url value='/resources/css/dealInfo/local.css'/>" />	
-<meta charset="EUC-KR">
-<title>ºÎµ¿»ê ¿©±â¾î¶§ | ${lawd_name} °Å·¡³»¿ª</title>
+<meta charset="utf-8">
+<title>ë¶€ë™ì‚° ì—¬ê¸°ì–´ë•Œ | ${lawd_name} ê±°ë˜ë‚´ì—­</title>
+
 </head>
 <body>
 	<div class="contents" align="center">
@@ -25,10 +27,11 @@
 			
 			<br><br>
 						
-			Áö¿ª  : <input type="text" name="lawd_name" value="±İÃµ±¸" >
+			ì§€ì—­  : <input type="text" name="lawd_name" value="ê¸ˆì²œêµ¬" >
 			
 			<br/>
-			±â°£  : <input type="month" name="deal_ymd">	<br/>
+			ê¸°ê°„  : <input type="month" name="deal_ymd">	<br/>
+
 			
 			<input type="submit" value="ok">
 				
@@ -38,36 +41,41 @@
 				<c:choose>
 					<c:when test="${!empty list}">
 						<c:forEach var="item" items="${list}" varStatus="status">
-							<!-- item list »Ñ¸®±â -->
+
+							<!-- item list ë¿Œë¦¬ê¸° -->
 							<li class="lists__item js-load">
 								<table border="0" class="table_trade">
 									<tr class="tr_items m1">
-										<td width="150" rowspan="2">
+										<td width="100" rowspan="2">
 											<span>${item.apartment }</span><br>
-											<em	class="em_item2"> <span class="span_circle m2">°Å·¡°¡</span>
-												${item.transaction_amount }¸¸
-											</em>
 										</td>
 										
 										<td rowspan="2" width="70">
 											<em class="em_item1"> 
-												<span class="span_circle m1">°Å·¡ÀÏ<br>
+
+												<span class="span_circle m1">ê±°ë˜ì¼<br>
 												${item.year}.${item.month}.${item.day }.
 												</span>
 											</em>
 										</td>
 										
 										<td>
-											<strong>°ÇÃà³âÀÏ</strong> ${item.build_year }³â  
+											<strong>ê±´ì¶•ë…„ì¼</strong> ${item.build_year }ë…„  
 										</td>
 
 										<td>
-											<strong>Info</strong> ${item.exclusive_area}§³  ${item.layer}Ãş
+											<strong>Info</strong> ${item.exclusive_area}ã¡  ${item.layer}ì¸µ
 										</td>
 									</tr>
 
 									<tr class="tr_items m2">
-										<td>¼­¿ï½Ã ${lawd_name} ${item.legal_dong}<br></td>
+                    <td>
+                    <em	class="em_item2"> <span class="span_circle m2">ê±°ë˜ê°€</span>
+												${item.transaction_amount }ë§Œ
+											</em>
+                    </td>
+										<td>ì„œìš¸ì‹œ ${lawd_name} ${item.legal_dong}<br></td>
+
 									</tr>
 								</table>
 							</li>
@@ -90,20 +98,22 @@
 							</li> --%>
 						</c:forEach>
 					</c:when>
-					<%-- °¡Á®¿Â °ªÀÌ ¾øÀ»¶§  --%> 
+
+					<%-- ê°€ì ¸ì˜¨ ê°’ì´ ì—†ì„ë•Œ  --%> 
 					<c:otherwise>
-						<p>Á¤º¸°¡  ¾ø½À´Ï´Ù...</p>
+						<p>ì •ë³´ê°€  ì—†ìŠµë‹ˆë‹¤...</p>
 					</c:otherwise>
 				</c:choose>
 			</ul>
 		</div>
 			
-		<!-- ´õº¸±â ¹öÆ° -->	
+		<!-- ë”ë³´ê¸° ë²„íŠ¼ -->	
 		<br>
-   		<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">´õº¸±â</a> </div>
+   		<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">ë”ë³´ê¸°</a> </div>
+
 	
 		<br>
-		<a href="realEstate.do">µ¹¾Æ°¡±â</a>
+		<a href="realEstate.do"></a>
 		<br>
 	</div>
 </body>
