@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class R {
 
-    public static String hostAddress = "localhost:8081/budong/";
+    public static String hostAddress = "localhost:8090/budong/";
 
     public static String requestToHost(String mappingOrRestResource) {
         return requestToHostWithScheme("http", mappingOrRestResource);

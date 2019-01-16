@@ -35,7 +35,6 @@ import com.budong.service.interfaces.ChatService;
  *         새로운 웹소켓 세션을 생성한다.
  * 
  */
-
 public class WebSocketHandler extends TextWebSocketHandler {
 	@Autowired
 	private ChatService chatService;
@@ -97,6 +96,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		logger.info("======================================");
+		sessionList.remove(session); 
+		roomList.remove(session); 
+		
 		logger.info("WebSocket 연결 해제  : " + session.toString());
 		logger.info("session 수  : " + sessionList.size());
 	}
