@@ -72,4 +72,27 @@
 	</websocket:handlers>
 
 	<bean id="chatHandler" class="com.budong.service.WebSocketHandler"></bean> -->
+	
+	<!-- 나상경 추가 -->
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean
+				class="com.budong.common.resolver.CustomMapArgumentResolver"></bean>
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+		
+	<!-- 로그 찍기 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean id="loggerInterceptor"
+				class="com.budong.common.logger.LoggerInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 나상경 추가 end -->
+	
+	
+
+	<mvc:default-servlet-handler />
 </beans>
