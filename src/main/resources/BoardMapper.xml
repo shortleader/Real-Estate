@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.budong.model.interfaces.BoardDAO">
+
+	<select id="selectBoardList"
+		resultType="com.budong.model.dto.BoardDTO">
+		select num, title, writer, reg_date, readcnt from
+		budong_board order by num desc
+	</select>
+
+	<select id="selectContent" parameterType="int"
+		resultType="com.budong.model.dto.BoardDTO">
+		select * from budong_board where num=#{num}
+	</select>
+
+	<select id="selectBoardCnt" resultType="com.budong.model.dto.BoardDTO">
+	select count(*) as totalCount from budong_board
+	</select>
+	
+	<insert id="insertBoard"
+		parameterType="com.budong.model.dto.BoardDTO">
+		insert into budong_board(num, title, writer, reg_date,
+		readcnt, content , pwd) values
+		(seq_boardnum.nextval, #{title},
+		#{writer}, sysdate, #{readcnt}, #{content}, #{pwd})
+	</insert>
+
+	<update id="updateBoard"
+		parameterType="com.budong.model.dto.BoardDTO">
+		update budong_board set
+		title = #{title},
+		writer = #{writer},
+		reg_date = sysdate,
+		content = #{content}
+		where num = #{num}
+	</update>
+
+	<update id="updateReadCnt" parameterType="int">
+		update budong_board set
+		readcnt = nvl(readcnt,0)+1
+		where num = #{num}
+	</update>
+
+	<delete id="deleteBoard"
+		parameterType="com.budong.model.dto.BoardDTO">
+		delete from budong_board where num=#{num}
+	</delete>
+	
+	<insert id="insertReply"
+		parameterType="com.budong.model.dto.ReplyDTO">
+		insert into budong_boardreply values
+		( #{reply_num}, #{reply_content},#{content_num})
+	</insert>
+	
+	<select id="checkReply" parameterType="int"
+		resultType="int">
+		select max(reply_num) from budong_boardreply where content_num = #{content_num}
+	</select>
+
+<select id="selectReplyList"
+		resultType="com.budong.model.dto.ReplyDTO">
+		select * from
+		budong_boardreply where content_num = #{content_num} order by reply_num desc
+	</select>
+</mapper>
