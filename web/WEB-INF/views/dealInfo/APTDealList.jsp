@@ -1,6 +1,8 @@
 <%@ page import="com.budong.R" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
+pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -26,7 +28,11 @@
 	
 	<script type="text/javascript" src="<c:url value='/resources/js/dealInfo/raphael_min.js'/>"></script>
 	<script src="<c:url value='/resources/js/dealInfo/seoul-local.js'/>" type="text/javascript" charset="UTF-8"></script>
-	<link type="text/css" rel="stylesheet" href="<c:url value='/resources/css/dealInfo/local.css'/>" />
+
+<link type="text/css" rel="stylesheet" href="<c:url value='/resources/css/dealInfo/local.css'/>" />	
+<meta charset="utf-8">
+<title>부동산 여기어때 | ${lawd_name} 거래내역</title>
+
 </head>
 <body>
 
@@ -48,7 +54,9 @@
 						
 			<input type="text" class="txt_tag" name="lawd_name" value="${lawd_name}">			
 			<br/>
-			<input type="month" class="month_tag" name="deal_ymd" value="2019-01">	<br/>
+
+			기간  : <input type="month" name="deal_ymd">	<br/>
+
 			
 			<input type="submit" value="ok">
 				
@@ -58,16 +66,18 @@
 				<c:choose>
 					<c:when test="${!empty list}">
 						<c:forEach var="item" items="${list}" varStatus="status">
+
 							<!-- item list 뿌리기 -->
 							<li class="lists__item js-load">
 								<table border="0" class="table_trade">
 									<tr class="tr_items m1">
-										<td width="100">
+										<td width="100" rowspan="2">
 											<span>${item.apartment }</span><br>
 										</td>
 										
 										<td rowspan="2" width="70">
 											<em class="em_item1"> 
+
 												<span class="span_circle m1">거래일<br>
 												${item.year}.${item.month}.${item.day }.
 												</span>
@@ -84,12 +94,14 @@
 									</tr>
 
 									<tr class="tr_items m2">
-										<td>
-											<em	class="em_item2"> <span class="span_circle m2">거래가</span>
-												${item.transaction_amount}만
+
+                    <td>
+                    <em	class="em_item2"> <span class="span_circle m2">거래가</span>
+												${item.transaction_amount }만
 											</em>
-										</td>
+                    </td>
 										<td>서울시 ${lawd_name} ${item.legal_dong}<br></td>
+
 									</tr>
 								</table>
 							</li>
@@ -112,6 +124,7 @@
 							</li> --%>
 						</c:forEach>
 					</c:when>
+
 					<%-- 가져온 값이 없을때  --%> 
 					<c:otherwise>
 						<p>정보가  없습니다...</p>
@@ -123,6 +136,10 @@
 		<!-- 더보기 버튼 -->	
 		<br>
    		<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a> </div>
+
+		<br>
+		<a href="realEstate.do"></a>
+		<br>
 	</div>
 	
 <%-- 	<c:import url="<%=request.getContextPath() %>bottom.jsp"></c:import> --%>
