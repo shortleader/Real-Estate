@@ -3,6 +3,7 @@ package com.budong.model.interfaces;
 import java.util.List;
 
 import com.budong.model.dto.BoardDTO;
+import com.budong.model.dto.ReplyDTO;
 
 public interface BoardDAO {
 	public List<BoardDTO> listboard();
@@ -16,5 +17,12 @@ public interface BoardDAO {
 	public int updateBoard(BoardDTO dto);
 
 	public int updateReadCnt(int num);
+	
+	public int insertReply(ReplyDTO dto);
+
+	public int checkReply(int num);
+	
+	public List<ReplyDTO> listreply(int num);
+	
 	
 }

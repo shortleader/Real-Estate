@@ -9,6 +9,7 @@ public class BoardDTO {
 	private String content;
 	private String pwd;
 	
+	
 
 	public int getNum() {
 		return num;
@@ -65,6 +66,4 @@ public class BoardDTO {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	
-
 }

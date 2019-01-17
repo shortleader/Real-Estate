@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.budong.model.dto.BoardDTO;
+import com.budong.model.dto.ReplyDTO;
 import com.budong.model.interfaces.BoardDAO;
 
 @Repository
@@ -55,6 +56,28 @@ public class BoardDAOImpl implements BoardDAO{
 		return mybatis.update(Namespace + "updateReadCnt", num);
 	}
 	
+	@Override
+	public int insertReply(ReplyDTO dto) {
+		return mybatis.insert(Namespace + "insertReply", dto);
+	}
 	
+	@Override
+	public int checkReply(int num) {
+		Object obj;
+		try {
+			obj = mybatis.selectOne(Namespace + "checkReply", num);
+			logger.info(obj.toString());
+		} catch (NullPointerException e) {
+			logger.error(e.getMessage());
+			return 0;
+		}
+		return (int) obj;
+	}
+	
+	@Override
+	public List<ReplyDTO> listreply(int num) {
+		logger.info("listreply : ok ");
+		return mybatis.selectList(Namespace + "selectReplyList",num);
+	}
 
 }

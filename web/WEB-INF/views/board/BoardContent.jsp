@@ -16,7 +16,7 @@
 	}
 	
  	function checkPwd(pwd,num){
-  		var inputPwd =prompt("수정하시려면 비밀번호를 입력하세요"+pwd);
+  		var inputPwd =prompt("수정하시려면 비밀번호를 입력하세요");
 		if(inputPwd==pwd){
 			 location.href="boardUpdateForm.do?num="+num;
 		}else {
@@ -25,7 +25,7 @@
  	} 
  	
  	function checkPwdDelete(pwd,num){
-  		var inputPwd =prompt("삭제하시려면 비밀번호를 입력하세요"+pwd);
+  		var inputPwd =prompt("삭제하시려면 비밀번호를 입력하세요");
 		if(inputPwd==pwd){
 			 location.href="boardDelete.do?num="+num;
 		}else{
@@ -34,7 +34,6 @@
  	} 
  	
 </script>
-
 	<div align="center">
 		<br>
 		<h2><b>글내용 보기</b></h2>
@@ -42,6 +41,7 @@
 		
 		
 		<c:forEach var="dto" items="${content}">
+		<c:set var="replynum" value="${dto.num}"/>
 			<table border="1" width="99%">
 			<tr>
 				<th bgcolor="#A6A6A6" width="20%">글번호</th>
@@ -63,6 +63,7 @@
 				<th bgcolor="#A6A6A6" width="20%">글내용</th>
 				<td colspan="3">${dto.content}</td>
 			</tr>
+
 			</table>
 			<table>
 			<tr>
@@ -78,12 +79,34 @@
 					<input type="button"  value="댓글달기" onmouseout="change2(this)" onmouseover="change1(this)" style="background-color:white;"
 					onclick="window.location='boardReplyForm.do?num=${dto.num}'">
 				</td>
-				
 			</tr>
 			</table>
 			</c:forEach>
-		
-	</div>
+<br>
+<br>
+<br>
+	<table border="1" width="99%">
+			<tr>
+				<th width="20%" bgcolor="#A6A6A6">번호</th>
+				<th width="20%" bgcolor="#A6A6A6">내용</th>
+				</tr>
+				<c:if test="${empty replyList}">
+			<tr>
+				<td colspan="6" align="center">
+					등록된 댓글이 없습니다.
+				</td>
+			</tr>	
+		</c:if>
+		<c:forEach var="dto" items="${replyList}">
+		<tr>
+				
+				<th>${dto.reply_num}</th>
+				<th>${dto.reply_content}</th>
+			</tr>
+		</c:forEach>
+
+	</table>
+</div>
 
 
 

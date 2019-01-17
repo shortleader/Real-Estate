@@ -36,7 +36,7 @@
 		</tr>	
 	</table>
 	<table border="1" width="800">
-		<tr bgcolor="#A6A6A6">
+		<tr bgcolor="#EAEAEA">
 			<th>글번호</th>
 			<th width="40%">제목</th>
 			<th>작성자</th>
