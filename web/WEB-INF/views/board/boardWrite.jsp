@@ -5,20 +5,34 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/views/board/include/include-header.jspf"%>
+<style> 
+	#frm {
+		padding : 3em;
+	}
+	
+	#table2 {
+		margin-top: 2em; 
+	} 
+	
+	#button-container {
+		margin-bottom: 2em;
+	}
+</style>
 </head>
 <body>
 	
-	<c:import url="../top.jsp"></c:import>
+	<c:import url="../top.jsp"></c:import> 
 	<form id="frm" name="frm" enctype="multipart/form-data">
 		<table class="board_view" id="board_view">
 			<colgroup>
 				<col width="15%">
 				<col width="*" />
 			</colgroup>
-			<h1>내놓기</h1>
-			<h4>매물정보 입력</h4>
+			
 			<tbody>
+				<tr><td colspan="2"><h4>매물정보 입력</h4></td></tr>
 				<tr>
+					
 					<th scope="col">매물유형</th>
 					<td><input type="radio" id="house_type" name="HOUSE_TYPE"
 						value="아파트" checked="checked">아파트 <input type="radio"
@@ -112,14 +126,17 @@
 			</tbody>
 		</table>
 
-		<table class="board_view">
+		<table id="table2" class="board_view">
 			<colgroup>
 				<col width="15%">
 				<col width="*" />
 			</colgroup>
-			<h4>부가정보 입력</h4>
 			<tbody>
+				<tr> 
+				<td colspan="2"> <h4>부가정보 입력</h4></td>
+				</tr>
 				<tr>
+			
 					<th scope="col">건물명</th>
 					<td><input type="text" id="house_name" name="HOUSE_NAME"
 						class="wdp-90" size="50"></input></td>
@@ -152,18 +169,22 @@
 							</p>
 						</div>
 					</td>
-				</tr>
-			</tbody>
+				</tr> 
+				
+				
+			</tbody>  
 			</tr>
-
+			
 		</table>
-		<br />
-		<br /> 
+
+	</form>
+	
+	<div align="center" id="button-container"> 
 		<a href="#this" class="btn" id="addFile">파일 추가</a> 
 		<a href="#this" class="btn" id="write">등록</a> 
 		<a href="#this" class="btn" id="list">취소</a>
-	</form>
-	
+	</div>
+				
 	<c:import url="../bottom.jsp"></c:import>
 	<%@ include file="/WEB-INF/views/board/include/include-body.jspf"%>
 	<script type="text/javascript">

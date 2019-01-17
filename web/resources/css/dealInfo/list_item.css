@@ -5,6 +5,12 @@
 	outline: none;
 }
 
+a{
+	text-decoration: inherit;
+    color: inherit;
+	cursor: pointer;
+}
+
 strong {
 	display: inline-block;
     font-size: 15px;
@@ -25,8 +31,29 @@ em, i  {
 }
 
 .tr_items m1{
-	margin-bottom: -5px
+	margin-bottom: -5px;
+}
+
+.li_cate{
+	display: inline-block;
+	font-size: 16px;
 	
+	border-right: 1px solid #bdbdbd;
+    border-bottom: 1px solid #bdbdbd;	
+}
+
+.txt_tag, .month.tag{
+	outline:inherit; 
+	font-size:16px;
+	font-family:inherit;
+  	width: 100px;
+  	height: 100px;
+}
+
+.ul_cate .li_cate .a_cate:hover, .ul_cate .li_cate .a_cate:focus  {
+	color:#ffffff;
+	border:1px solid #808080;
+	background-color:#808080;
 }
 
 .span_circle m1{ /* 거래일짜  테두리  동그랗게  이쁘게 */

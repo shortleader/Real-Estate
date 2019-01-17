@@ -1,15 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <%@ include file="/WEB-INF/views/board/include/include-header.jspf"%>
+<style> 
+	#list-container {
+	margin : 0 auto;
+	width : 80%;
+	padding : 2em;  
+	} 
+	
+	.list-title {
+		margin-bottom: 20px;
+	}
+
+</style>
 </head>
 <body>
+<c:import url="../top.jsp"></c:import>	
 	
-	<c:import url="../top.jsp"></c:import>
-	<h1>매물 목록</h1>
+
+	<div id="list-container">  
+	<h1 class="list-title"> 매물 목록</h1>
 	<table class="board_list">
 		<colgroup>
 			<col width="10%" />
@@ -60,8 +75,7 @@
 			</c:choose>
 		</tbody>
 	</table>
-	<br />
-	
+	</div>	
 	<%-- 	<div class="">
 		<ul class="" text-align="center">
 			
@@ -103,7 +117,8 @@
 	<br /> -->
 
 
-	<a href="#this" class="btn" id="write">글쓰기</a>
+	<!-- <a href="#this" class="btn" id="write">글쓰기</a> -->
+	
 	<c:import url="../bottom.jsp"></c:import>
 	<%@ include file="/WEB-INF/views/board/include/include-body.jspf"%>
 	<script type="text/javascript">

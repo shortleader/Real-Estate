@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Graph Test</title>
+    <title>Graph</title>
     <script type="text/javascript">
         window.onload = function (e) {
             var datePicker = $("#datePicker");
@@ -109,6 +109,11 @@
 </head>
 
 <body>
+<div align="center">
+	<!-- 카테고리  나타내기 -->
+		<%@ include file="../dealInfo/dealInfo_category.jsp" %>
+	<!-- end 카테고리   -->
+	<br>
 <div>
     <input type="date" id="datePicker"/>
 </div>
@@ -120,5 +125,6 @@
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+</div>
 </body>
 </html>

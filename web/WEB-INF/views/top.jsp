@@ -10,16 +10,16 @@
    src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js'></script>
 <!-- Bootstrap core CSS -->
-<link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="resources/css/4-col-portfolio.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/css/4-col-portfolio.css" rel="stylesheet">
 
 </head>
 <body>
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="#">여기 Budong</a>
+			<a class="navbar-brand" href="/budong/">여기 Budong</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -31,17 +31,17 @@
 						href="/budong/">Home<span class="sr-only">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/budong/TradeList.do">매물/시세</a></li>
+						href="/budong/board/openBoardList.do">매물</a></li>
+						<li class="nav-item"><a class="nav-link" href="/budong/board/openBoardWrite.do">매물 등록</a></li>
+						<li class="nav-item"><a class="nav-link" href="/budong/dealInfo/">시세</a></li>
 					<li class="nav-item"><a class="nav-link" href="/budong/khw">뉴스</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/budong/testTrade.do">직거래</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">커뮤니티</a></li>
+					
+					<li class="nav-item"><a class="nav-link" href="boardList.do">커뮤니티</a></li>
 					<%
 						if (session.getAttribute("login") != null) {
 					%>
 					<li id="logoutBtn" class="nav-item"><a class="nav-link"
 						onclick="location.href='logout.do'">로그아웃</a></li>
-
 
 
 					<!-- 채팅 컨테이너  -->
@@ -181,7 +181,7 @@
    
    <script type="text/javascript"> 
 
-      var webSocket;
+   var webSocket;
 
       <%-- <%=R.requestToHostWithScheme("ws",R.mapping.request_web_socket)%> --%>
       function connectWebSocket() {         /*웹 소켓 연결 */

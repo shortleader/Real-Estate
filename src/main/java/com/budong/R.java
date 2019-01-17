@@ -23,7 +23,7 @@ public class R {
             mappingOrRestResource = "/" + mappingOrRestResource;
             mappingOrRestResource = mappingOrRestResource.replaceAll("/+","/");
         }
-        return scheme + R.hostAddress + mappingOrRestResource;
+        return scheme + R.hostAddress + "/budong" + mappingOrRestResource;
     }
 
     public static String requestToHostWithScheme(String scheme, String controllerResource, String mappingResource) {
@@ -51,8 +51,9 @@ public class R {
         public static final String board_updateform = "board/BoardUpdateForm";
         public static final String board_replyform = "board/BoardReply";
         
-       
-        
+        public static final String err404 = "err/err-404";
+        public static final String err500 = "err/err-500";
+        public static final String err_default = "err/err-default";
     }
 
     public static class controller {
@@ -60,9 +61,9 @@ public class R {
         public static final String main = "/";
         public static final String news = "news";
         public static final String real_estate_deal_info = "dealInfo";
-
         public static final String board = "board";
-       
+        public static final String err  = "err";
+
     }
 
     public static class mapping {
@@ -99,6 +100,10 @@ public class R {
         public static final String board_replyform = "/boardReplyForm.do";
         public static final String board_reply = "/boardReply.do";
         
+        public static final String err_err404 = "/404.err";
+        public static final String err_err500 = "/500.err";
+        public static final String err_err_default = "/exception.err";
+
     }
 
     public static class rest {

@@ -24,20 +24,18 @@
 
 	<c:import url="top.jsp"></c:import>
 
-	<%-- <c:import url="page.jsp"></c:import> --%>
+	<c:import url="test/graphYearMonth.jsp"></c:import>
 	
 	<c:import url="bottom.jsp"></c:import>
 	
 	<!-- Bootstrap core JavaScript -->
-	<script src="resources/vendor/jquery/jquery.min.js"></script>
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="resources/js/news.js"></script>
 
 	
 <br>	
 <br>	
-<%-- <a href="<%=R.requestToHost(R.mapping.board_home)%>">게시판 바로가기</a> --%>
- <a href="boardList.do">게시판 바로가기</a>
+
 
 
 </body>
