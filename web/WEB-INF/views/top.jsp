@@ -7,7 +7,7 @@
 <link href='<c:url value="/resources/css/chat.css" />' rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script
-	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+   src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js'></script>
 
 
@@ -175,7 +175,9 @@
       }
    </script>
 
-	<script type="text/javascript"> 
+   
+   <script type="text/javascript"> 
+
       var webSocket;
 
       <%-- <%=R.requestToHostWithScheme("ws",R.mapping.request_web_socket)%> --%>
@@ -390,7 +392,5 @@
          searchFilter.init();
       })();
    </script>
-
-
 </body>
 </html>
