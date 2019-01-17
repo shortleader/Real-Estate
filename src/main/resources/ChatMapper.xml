@@ -19,19 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select mem_room from budong_member where mem_id = #{mem_id} 
 	</select> 
 	
-	<!--사용자가 이전에 있던 방 이름을 가져옴  -->
 	<select id="getPrevRoom" parameterType="string" resultType="string">
 		select mem_prevRoom from budong_member where mem_id = #{mem_id}
-	</select> 
-	
-	<!--채팅내용을 저장  -->
-	<insert id="saveChat" parameterType="com.budong.model.dto.ChatDTO"> 
-		insert into budong_chat values (seq_chat.nextval, #{id}, #{room}, #{content})
-	</insert>
-	
-	<!--room에 있는 채팅 기록을 가져옴  -->
-	<select id="getChatHistory" parameterType="string" resultType="com.budong.model.dto.ChatDTO"> 
-		select id, room, msg from budong_chat where room = #{room}
-	 </select>
+	</select>
 
 </mapper>

@@ -56,29 +56,15 @@ public class ChatController {
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 
 		// 이동하기 이전 방 DB에 저장
-		String prevRoom = chatService.getMemberRoom(dto.getMem_id());
-		chatService.updatePrevRoom(new ChatDTO(dto.getMem_id(), prevRoom, ""));
+		String prevRoom = chatService.getMemberRoom(dto.getMem_id()); 
+		if(prevRoom != null)
+			chatService.updatePrevRoom(new ChatDTO(dto.getMem_id(), prevRoom, "",""));
 
 		// 이동한 방 DB에 저장
 		String updatedRoomName = chatService
-				.updateMemberRoom(new ChatDTO(dto.getMem_id(), req.getParameter("roomName"), ""));
+				.updateMemberRoom(new ChatDTO(dto.getMem_id(), req.getParameter("roomName"), "",""));
 
 		return updatedRoomName;
 	}
 
-	@RequestMapping(value="/checkRoom.do", method=RequestMethod.POST)
-	@ResponseBody
-	public String checkRoom(HttpServletRequest req, @RequestParam(value="mem_id")String mem_id) {
-		return chatService.getMemberRoom(mem_id);
-	}
-	
-	@RequestMapping(value = "/chatList.do", method = RequestMethod.POST)
-	@ResponseBody
-	public List<ChatDTO> getChatHistory(HttpServletRequest req) {
-		String roomName = req.getParameter("roomName");
-		
-		req.setAttribute("chatList", chatService.getChatHistory(roomName)); 
-		logger.info("chat : " + chatService.getChatHistory(roomName));
-		return chatService.getChatHistory(roomName);
-	}
 }

@@ -12,15 +12,8 @@ public interface ChatDAO {
 	public int updatePrevRoom(ChatDTO dto);
 	
 	//mem_id의 현재 채팅방 이름을 가져옴. 
-	public String getMemberRoom(String mem_id);   
+	public String getMemberRoom(String mem_id);    
 	
-	//mem_id의 이전 채팅방 이름을 가져옴
-	public String getPrevRoom(String mem_id);  
-	
-	//채팅 기록을 저장함 
-	public int saveChat(ChatDTO dto); 
-	
-	//room에 있는 채팅 기록을 가져옴
-	public List<ChatDTO> getChatHistory(String room); 
+	public String getPrevRoom(String mem_id);
 	
 }
