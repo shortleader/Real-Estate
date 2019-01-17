@@ -18,11 +18,8 @@
 <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="resources/css/4-col-portfolio.css" rel="stylesheet">
-
-
 </head>
 <body>
-
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
@@ -71,5 +68,4 @@
 	<script src="resources/js/news.js"></script>
 
 </body>
-
 </html>

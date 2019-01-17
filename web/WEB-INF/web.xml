@@ -37,4 +37,17 @@
 	<!-- <resource-env-ref> <resource-env-ref-name>jdbc/oracle</resource-env-ref-name>
 		<resource-env-ref-type>javax.sql.DataSource</resource-env-ref-type> </resource-env-ref> -->
 
+	<!-- Error  Page  -->
+	<!-- <error-page>	
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/err/exception.err</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/err/404.err</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/err/500.err</location>
+	</error-page> -->
 </web-app>
