@@ -203,6 +203,22 @@
 			<artifactId>okhttp</artifactId>
 			<version>3.12.0</version>
 		</dependency>
+		
+		<!-- 나상경 추가 -->
+		<!-- 페이징 처리 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.6.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.6.4</version>
+		</dependency>
+		<!-- 나상겅 end -->
+		
 	</dependencies>
 
 	<build>
