@@ -1,6 +1,6 @@
-@charset "UTF-8";
+@charset "EUC-KR";
 
-/* ë¦¬ìŠ¤íŠ¸  ì•„ì´í…œ  css */
+/* ¸®½ºÆ®  ¾ÆÀÌÅÛ  css */
 .*{
 	outline: none;
 }
@@ -42,23 +42,21 @@ em, i  {
     border-bottom: 1px solid #bdbdbd;	
 }
 
-/* inputíƒœê·¸ ì´ì˜ê²Œ ê¾¸ë©°ì£¼ê¸° */
 .txt_tag, .month.tag{
 	outline:inherit; 
-	margin: 100px auto;
-  	width: 300px;
-  	height: 50px;
+	font-size:16px;
+	font-family:inherit;
+  	width: 100px;
+  	height: 100px;
 }
 
-/* ì¹´í…Œê³ ë¦¬ hover ì´ë²¤íŠ¸ ì£¼ê¸° */
 .ul_cate .li_cate .a_cate:hover, .ul_cate .li_cate .a_cate:focus  {
 	color:#ffffff;
 	border:1px solid #808080;
 	background-color:#808080;
 }
 
-
-.span_circle m1{ /* ê±°ë˜ì¼ì§œ  í…Œë‘ë¦¬  ë™ê·¸ë—ê²Œ  ì´ì˜ê²Œ */
+.span_circle m1{ /* °Å·¡ÀÏÂ¥  Å×µÎ¸®  µ¿±×¶ş°Ô  ÀÌ»Ú°Ô */
 	padding: 0;
     border-color: #445cd4;
     font-size: 14px;
@@ -67,7 +65,7 @@ em, i  {
     color: #445cd4;
 }
 
-.span_circle m2{ /* ë§¤ë§¤ê°€ê²©  í…Œë‘ë¦¬  ë™ê·¸ë—ê²Œ  ì´ì˜ê²Œ */
+.span_circle m2{ /* ¸Å¸Å°¡°İ  Å×µÎ¸®  µ¿±×¶ş°Ô  ÀÌ»Ú°Ô */
 	padding: 0;
     border-color: #FF9999;
     font-size: 14px;
@@ -102,7 +100,7 @@ span{
 }
 
 
-/* ë”ë³´ê¸°  êµ¬í˜„ & ë¦¬ìŠ¤íŠ¸  css  */
+/* ´õº¸±â  ±¸Çö & ¸®½ºÆ®  css  */
 .js-load {
     display: none;
 }

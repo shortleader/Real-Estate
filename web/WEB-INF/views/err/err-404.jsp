@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
 	response.setStatus(200);
 	String badURI = request.getRequestURI();
@@ -7,13 +7,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>404 ERROR PAGE !</title>
 </head>
 <body>
 	<div align="center">
 		<h2>404 ERROR !!!</h2>
-		<h4><%=badURI %>´Â <br>Àß¸øµÈ  Á¢±ÙÀÌ°Å³ª Á¸ÀçÇÏÁö  ¾Ê´Â  ÆäÀÌÁö  ÀÔ´Ï´Ù.</h4>
+		<h4><%=badURI %>ëŠ” <br>ì¡´ìž¬í•˜ì§€ ì•Šê±°ë‚˜ </h4>
 		<img src="<%=request.getContextPath() %>/resources/images/error-404.png" />
 			
 		<%@ include file="bottom.jsp" %>

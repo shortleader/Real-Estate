@@ -30,7 +30,7 @@
 </head>
 <body>
 
-	<c:import url="<%=request.getContextPath() %>top.jsp"></c:import>
+	<%-- <c:import url="<%=request.getContextPath() %>/top.jsp"></c:import> --%>
 	<!-- nav -->
 		<div class="contents" align="center">
 		<!-- 카테고리  나타내기 -->
@@ -46,9 +46,9 @@
 			
 			<br><br>
 						
-			<input type="text" class="txt_tag" name="lawd_name" value="금천구" disabled="disabled">			
+			<input type="text" class="txt_tag" name="lawd_name" value="${lawd_name}">			
 			<br/>
-			기간  : <input type="month" class="month_tag" name="deal_ymd" value="2019-01">	<br/>
+			<input type="month" class="month_tag" name="deal_ymd" value="2019-01">	<br/>
 			
 			<input type="submit" value="ok">
 				
@@ -125,7 +125,7 @@
    		<div id="js-btn-wrap" class="btn-wrap"> <a href="javascript:;" class="button">더보기</a> </div>
 	</div>
 	
-	<c:import url="<%=request.getContextPath() %>bottom.jsp"></c:import>
+<%-- 	<c:import url="<%=request.getContextPath() %>bottom.jsp"></c:import> --%>
 
 
 	<!-- Bootstrap core JavaScript -->

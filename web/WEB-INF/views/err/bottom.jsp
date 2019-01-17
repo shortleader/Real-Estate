@@ -1,16 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
+<br>
 	<br>
-	<br>
-	<input type="button" onclick="javascript:history.back()" value="뒤로">
+	<input type="button" onclick="javascript:history.back()" value="Back">
 	&nbsp; &nbsp; &nbsp;
-	<input type="button" onclick="/budong/" value="메인으로">
+	<input type="button" onclick="/budong/" value="Main">
 	
 </body>
 </html>
