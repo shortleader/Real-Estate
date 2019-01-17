@@ -58,7 +58,7 @@ public class MemberController {
 		dto.setMem_region(req.getParameter("mem_region"));
 
 		service.insertMember(dto);
-		return "redirect:" + R.mapping.chat_home;
+		return "redirect:" + R.mapping.INDEX;
 	}
 	
 	//아이디 중복 체크 
