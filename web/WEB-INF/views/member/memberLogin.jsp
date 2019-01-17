@@ -120,12 +120,6 @@
 								<input type="submit" id="login-btn" class="button" value="Login">
 							</form>
 
-							<div class="help-action">
-								<p>
-									<i class="fa fa-arrow-left" aria-hidden="true"></i><a
-										class="forgot" href="#">Forgot your password?</a>
-								</p>
-							</div>
 						</div>
 
 						<!--회원가입 탭  -->

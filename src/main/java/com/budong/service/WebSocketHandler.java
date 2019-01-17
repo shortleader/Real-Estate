@@ -111,6 +111,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 		String id = jsonObject.getString("id"); 
 		String roomName = jsonObject.getString("roomName"); 
 		String content = jsonObject.getString("text"); 
+		String mdate = jsonObject.getString("date");
 		
 		Set<WebSocketSession> key = roomList.keySet();
 		Iterator<WebSocketSession> it = key.iterator();
@@ -119,7 +120,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
 		while (it.hasNext()) {
 			WebSocketSession s = it.next();
 			if (!roomName.equals("") && roomList.get(s).equals(roomName)) { 
-				//chatService.saveChat(new ChatDTO(id,roomName,content));
 				s.sendMessage(new TextMessage(message.getPayload()));
 			}
 		}

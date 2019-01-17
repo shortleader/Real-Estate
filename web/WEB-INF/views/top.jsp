@@ -13,186 +13,149 @@
 
 </head>
 <body>
-   <!-- Navigation -->
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-         <a class="navbar-brand" href="#">여기 Budong</a>
-         <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarResponsive" aria-controls="navbarResponsive"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-               <li class="nav-item active"><a class="nav-link"
-                  href="/budong/">Home<span class="sr-only">(current)</span>
-               </a></li>
-               <li class="nav-item"><a class="nav-link" href="/budong/TradeList.do">매물/시세</a></li>
-               <li class="nav-item"><a class="nav-link" href="/budong/khw">뉴스</a></li>
-               <li class="nav-item"><a class="nav-link" href="/budong/testTrade.do">직거래</a></li>
-               <li class="nav-item"><a class="nav-link" href="#">커뮤니티</a></li>
-               <%
-                  if (session.getAttribute("login") != null) {
-               %>
-               <li id="logoutBtn" class="nav-item"><a class="nav-link"
-                  onclick="location.href='logout.do'">로그아웃</a></li>
-                  
-                  
-                  
-               <!-- 채팅 컨테이너  -->
-               <div class="floating-chat">
-                  <i class="fas fa-comments" aria-hidden="true"></i> <input
-                     type="hidden" name="roomName" value="">
-    
-                  <!-- 방 목록 컨테이너  -->
-                  <div class="room-list" id="room-list">
-                     <div class="search">
-                        <input type="text" id="room-filter" placeholder="search" /> <i
-                           class="fa fa-search"></i>
-                     </div>
-                     <ul class="list" id="ul-list">
-                        <li class="clearfix"><img
-                           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg"
-                           alt="avatar" />
-                           <div class="about">
-                              <div class="name">Vincent Porter</div>
-                           </div></li>
-
-                        <li class="clearfix"><img
-                           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg"
-                           alt="avatar" />
-                           <div class="about">
-                              <div class="name">Aiden Chavez</div>
-                           </div></li>
-
-                        <li class="clearfix"><img
-                           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg"
-                           alt="avatar" />
-                           <div class="about">
-                              <div class="name">Mike Thomas</div>
-                           </div></li>
-
-                        <li class="clearfix"><img
-                           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_04.jpg"
-                           alt="avatar" />
-                           <div class="about">
-                              <div class="name">Erica Hughes</div>
-                           </div></li>
-
-                        <li class="clearfix"><img
-                           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_05.jpg"
-                           alt="avatar" />
-                           <div class="about">
-                              <div class="name">Ginger Johnston</div>
-                           </div></li>
-
-                        <li class="clearfix"><img
-                           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_06.jpg"
-                           alt="avatar" />
-                           <div class="about">
-                              <div class="name">Tracy Carpenter</div>
-                           </div></li>
-
-                        <li class="clearfix"><img
-                           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_07.jpg"
-                           alt="avatar" />
-                           <div class="about">
-                              <div class="name">Christian Kelly</div>
-                           </div></li>
-                     </ul>
-                  </div>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">여기 Budong</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a class="nav-link"
+						href="/budong/">Home<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/budong/TradeList.do">매물/시세</a></li>
+					<li class="nav-item"><a class="nav-link" href="/budong/khw">뉴스</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/budong/testTrade.do">직거래</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">커뮤니티</a></li>
+					<%
+						if (session.getAttribute("login") != null) {
+					%>
+					<li id="logoutBtn" class="nav-item"><a class="nav-link"
+						onclick="location.href='logout.do'">로그아웃</a></li>
 
 
-                  <!--채팅 컨테이너  -->
-                  <div class="chat">
-                     <!-- 채팅 헤더  -->
-                     <div class="header">
-                        <span id="header-title" class="title"> <c:if
-                              test="null eq ${roomName}"> 전체 채팅방 </c:if> <c:if
-                              test="null != ${roomName}"> ${roomName} </c:if>
-                        </span>
-                        <button>
-                           <i class="fa fa-times" aria-hidden="true"></i>
-                        </button>
-                     </div>
-                     <!-- 채팅 내용  -->
-                     <ul class="chat-history">
-                     </ul>
-                     <!--메시지 전송 컨테이너-->
-                     <div class="footer clearfix">
-                        <div class="text-box" contenteditable="true" class="single-line"
-                           disabled="true"></div>
-                        <button id="sendMessage">send</button>
-                     </div>
-                  </div>
-               </div>
-               <%
-                  } else {
-               %>
-               <li id="loginBtn" class="nav-item"><a class="nav-link"
-                  href="#">로그인</a></li>
-               <%
-                  }
-               %>
-            </ul>
-         </div>
 
-      </div>
-      <%
-         if (session.getAttribute("login") != null) {
-      %>
-      <div class="nav-user-name">${login.mem_id}님</div>
-      <%
-         }
-      %>
-   </nav>
+					<!-- 채팅 컨테이너  -->
+					<div class="floating-chat">
+						<i class="fas fa-comments" aria-hidden="true"></i> <input
+							type="hidden" name="roomName" value="">
 
-   <div id="login-modal">
-      <jsp:include page="member/memberLogin.jsp"></jsp:include>
-      <%-- <c:import url="member/memberLogin.jsp">
-      </c:import> --%>
-   </div>
-   
-   <c:set var="chatList" value="${chatList}"></c:set>
-   <script> 
-      window.onload = loadChatInfo();
-      
-      function loadChatInfo(){
-         $.ajax({
-            type : 'POST',
-            data : {
-               "mem_id" : "${login.mem_id}"
-            }, 
-            url : "checkRoom.do",
-            success : function(data) { 
+						<!-- 방 목록 컨테이너  -->
+						<div class="room-list" id="room-list">
+							<div class="search">
+								<input type="text" id="room-filter" placeholder="search" /> <i
+									class="fa fa-search"></i>
+							</div>
+							<ul class="list" id="ul-list">
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Vincent Porter</div>
+									</div></li>
 
-            },error : function(data) {
-               console.log("failed loading room name ");
-            }
-         });
-      }
-      
-      function loadChatHistory(roomName) {
-         $.ajax({
-            type : 'POST', 
-            data : roomName,
-            url : "chatList.do", 
-            success : function(data) {
-               setChatHistory(data);
-            }, 
-            error : function(data) {
-               console.log("failed loading chat history"); 
-            }
-         });
-      }
-      
-      function setChatHistory(data) {
-         console.log('${chatList}');
-      }
-      
-   </script> 
-   
-   <script>
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Aiden Chavez</div>
+									</div></li>
+
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Mike Thomas</div>
+									</div></li>
+
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_04.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Erica Hughes</div>
+									</div></li>
+
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_05.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Ginger Johnston</div>
+									</div></li>
+
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_06.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Tracy Carpenter</div>
+									</div></li>
+
+								<li class="clearfix"><img
+									src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_07.jpg"
+									alt="avatar" />
+									<div class="about">
+										<div class="name">Christian Kelly</div>
+									</div></li>
+							</ul>
+						</div>
+
+
+						<!--채팅 컨테이너  -->
+						<div class="chat">
+							<!-- 채팅 헤더  -->
+							<div class="header">
+								<span id="header-title" class="title"> <c:if
+										test="null eq ${roomName}"> 전체 채팅방 </c:if> <c:if
+										test="null != ${roomName}"> ${roomName} </c:if>
+								</span>
+								<button>
+									<i class="fa fa-times" aria-hidden="true"></i>
+								</button>
+							</div>
+							<!-- 채팅 내용  -->
+							<ul class="chat-history">
+							</ul>
+							<!--메시지 전송 컨테이너-->
+							<div class="footer clearfix">
+								<div class="text-box" contenteditable="true" class="single-line"
+									disabled="true"></div>
+								<button id="sendMessage">send</button>
+							</div>
+						</div>
+					</div>
+					<%
+						} else {
+					%>
+					<li id="loginBtn" class="nav-item"><a class="nav-link"
+						href="#">로그인</a></li>
+					<%
+						}
+					%>
+				</ul>
+			</div>
+
+		</div>
+		<%
+			if (session.getAttribute("login") != null) {
+		%>
+		<div class="nav-user-name">${login.mem_id}님</div>
+		<%
+			}
+		%>
+	</nav>
+
+	<div id="login-modal">
+		<jsp:include page="member/memberLogin.jsp"></jsp:include>
+	</div>
+
+
+
+	<script>
       var modal = document.getElementById('login-modal');
       var loginBtn = document.getElementById('loginBtn');
       var closeModal = document.getElementById('modal-close');
@@ -211,8 +174,10 @@
          }
       }
    </script>
+
    
    <script type="text/javascript"> 
+
       var webSocket;
 
       <%-- <%=R.requestToHostWithScheme("ws",R.mapping.request_web_socket)%> --%>
@@ -426,6 +391,9 @@
          searchFilter.init();
       })();
    </script>
+<<<<<<< HEAD
    
+=======
+>>>>>>> refs/remotes/origin/ljy
 </body>
 </html>
