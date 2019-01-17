@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.budong.R;
 import com.budong.model.dto.BoardDTO;
+import com.budong.model.dto.ReplyDTO;
 import com.budong.model.interfaces.BoardDAO;
 
 @Controller
@@ -55,8 +56,10 @@ public class BoardController {
 		boardDAO.updateReadCnt(num);
 
 		List<BoardDTO> boardContent = boardDAO.getContent(num);
+		List<ReplyDTO> replyList = boardDAO.listreply(num);
 
 		mav.addObject("content", boardContent);
+		mav.addObject("replyList", replyList);
 		mav.setViewName(R.path.board_content);
 		return mav;
 
@@ -83,7 +86,8 @@ public class BoardController {
 		dto.setWriter(req.getParameter("writer"));
 		dto.setTitle(req.getParameter("title"));
 		dto.setContent(req.getParameter("content"));
-
+		dto.setPwd(req.getParameter("pwd"));
+		
 		boardDAO.insertBoard(dto);
 
 		List<BoardDTO> boardList = boardDAO.listboard();
@@ -147,7 +151,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	// 답글달기
+	// 댓글폼으로이동
 	@RequestMapping(value = R.mapping.board_replyform, method = RequestMethod.GET)
 	public ModelAndView replyform(HttpServletRequest req,ModelAndView mav) throws Exception {
 		logger.info("Board replyform: ok");
@@ -155,8 +159,40 @@ public class BoardController {
 
 
 		List<BoardDTO> boardContent = boardDAO.getContent(num);
-
+		List<ReplyDTO> replyList = boardDAO.listreply(num);
 		mav.addObject("content", boardContent);
+		mav.addObject("replyList", replyList);
+		mav.setViewName(R.path.board_replyform);
+		return mav;
+	}
+	
+	// 댓글달기
+	@RequestMapping(value = R.mapping.board_reply, method = RequestMethod.GET)
+	public ModelAndView reply(HttpServletRequest req,ModelAndView mav) throws Exception {
+		logger.info("Board reply: ok");
+		int num = ServletRequestUtils.getIntParameter(req, "num");
+		String replyvalue =req.getParameter("replyvalue");
+		ReplyDTO dto = new ReplyDTO();
+
+		//---------------------------번호체크
+		int checkReply = boardDAO.checkReply(num);
+
+		
+		if(checkReply<=0) {
+			dto.setReply_num(1);
+		}else {
+			dto.setReply_num(checkReply+1);
+		}
+		
+		dto.setcontent_num(num);
+		dto.setReply_content(replyvalue);
+		boardDAO.insertReply(dto);
+		
+		List<BoardDTO> boardContent = boardDAO.getContent(num);
+		List<ReplyDTO> replyList = boardDAO.listreply(num);
+		mav.addObject("content", boardContent);
+		mav.addObject("replyList", replyList);
+
 		mav.setViewName(R.path.board_replyform);
 		return mav;
 	}

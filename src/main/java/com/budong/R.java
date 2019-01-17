@@ -95,6 +95,7 @@ public class R {
         public static final String board_update = "/boardUpdate.do";
         public static final String board_updateform = "/boardUpdateForm.do";
         public static final String board_replyform = "/boardReplyForm.do";
+        public static final String board_reply = "/boardReply.do";
         
     }
 

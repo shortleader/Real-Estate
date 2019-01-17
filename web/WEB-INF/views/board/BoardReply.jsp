@@ -19,6 +19,12 @@
 		obj.style.color = 'black';
 	}
  	
+	function replyinsert(){
+		var replyvalue = document.getElementById('replyvalue').value;
+		var num = ${replynum};
+		location.href="boardReply.do?num="+num+ "&replyvalue=" +replyvalue;
+				
+	}
 </script>
 
 <div align="center">
@@ -26,10 +32,10 @@
 	<br>
 	<br>
 	<br>
-		<table border="1" width="99%">
+		<table border="1" width="99%" >
 			<tr>
 				<th width="20%">댓글</th>
-				<td><textarea style="width:100%;border:1;overflow:visible;text-overflow:ellipsis;resize: none;" width="99%" name="content" rows="8" cols="50"></textarea>
+				<td><textarea id="replyvalue" style="width:100%;border:1;overflow:visible;text-overflow:ellipsis;resize: none;" width="99%" name="content" rows="4" cols="50"></textarea>
 				</td>
 			</tr>
 		</table>
@@ -37,17 +43,15 @@
 		<tr align="right">
 		<td >
 		<input type="button" value="댓글 등록" onmouseout="change2(this)" onmouseover="change1(this)" style="background-color:white;"
-					onclick="window.location='boardReply.do'"
+					onclick="replyinsert()"
 					> &nbsp;&nbsp;&nbsp;&nbsp;
 					</td>
 					</tr>
 		</table>
+		
+		<br>
+		<br>
+		<br>
+		
+		
 </div>
-
-
-
-
-
-
-
-

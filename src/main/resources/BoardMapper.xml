@@ -46,5 +46,21 @@
 		parameterType="com.budong.model.dto.BoardDTO">
 		delete from budong_board where num=#{num}
 	</delete>
+	
+	<insert id="insertReply"
+		parameterType="com.budong.model.dto.ReplyDTO">
+		insert into budong_boardreply values
+		( #{reply_num}, #{reply_content},#{content_num})
+	</insert>
+	
+	<select id="checkReply" parameterType="int"
+		resultType="int">
+		select max(reply_num) from budong_boardreply where content_num = #{content_num}
+	</select>
 
+<select id="selectReplyList"
+		resultType="com.budong.model.dto.ReplyDTO">
+		select * from
+		budong_boardreply where content_num = #{content_num} order by reply_num desc
+	</select>
 </mapper>

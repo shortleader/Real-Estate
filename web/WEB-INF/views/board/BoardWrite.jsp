@@ -23,48 +23,59 @@
 			f.passwd.focus()
 			return false;
 		}
-		return true;
+		
 	}
+		
+		function change1(obj) {
+			obj.style.background = '#58CCBD';
+			obj.style.color = 'white';
+		}
+
+		function change2(obj) {
+			obj.style.background = 'white';
+			obj.style.color = 'black';
+		}
+
+				
 </script>
 <div align="center">
 	<form name="f" action="boardInsert.do" method="post"
 				onsubmit="return checkBoard()">
 		<table border="1" width="99%">
-			<tr bgcolor="#58CCBD">
-				<th colspan="2">글 쓰 기</th>
-			</tr>
+			<br>
+		<h2><b>글 쓰 기</b></h2>
+		<br><br>
 			<tr >
-				<th width="20%">이 름</th>
+				<th width="20%" bgcolor="#A6A6A6">이 름</th>
 				<td><input type="text" name="writer"></td>
 			</tr>
 			<tr>
-				<th width="20%">제 목</th>
+				<th width="20%" bgcolor="#A6A6A6">제 목</th>
 				<td><input type="text" name="title"></td>
 			</tr>
 			
 			<tr>
-				<th width="20%">내 용</th>
-				<td><textarea name="content" rows="8" cols="50"></textarea></td>
+				<th width="20%" bgcolor="#A6A6A6">내 용</th>
+				<td><textarea style="width:100%;border:1;overflow:visible;text-overflow:ellipsis;resize: none;"
+			 width="99%" name="content" rows="8" cols="50"></textarea></td>
 			</tr>
 			<tr>
-				<th width="20%">비밀번호</th>
+				<th width="20%" bgcolor="#A6A6A6">비밀번호</th>
 				<td><input type="password" name="pwd"></td>
 			</tr>
-			<tr bgcolor="#58CCBD">
-				<td colspan="2">
+			</table>
+			<table>
+			<tr align="center" >
+				<td >
 					<input type="submit" value="글쓰기">
-					<input type="reset" value="다시작성">
-					<input type="button" value="목록보기" onclick="window.location='boardList.do'">
+					<input type="reset" value="다시작성" onmouseout="change2(this)" onmouseover="change1(this)"
+					style="background-color: white;">
+					<input type="button" value="목록보기" 
+					onmouseout="change2(this)" onmouseover="change1(this)"
+					style="background-color: white;"
+					onclick="window.location='boardList.do'">
 				</td>
 			</tr>
 		</table>
 	</form>
 </div>
-
-
-
-
-
-
-
-
