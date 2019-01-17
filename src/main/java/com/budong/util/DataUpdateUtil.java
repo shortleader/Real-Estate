@@ -70,11 +70,14 @@ public class DataUpdateUtil {
         log.debug("DataUpdateUtil instance initalize complete.");
     }
 
-    @Scheduled(cron = "0 0 1,13 * * *")
+    @Scheduled(cron = "0 24 16 * * *")
     public void updateSchedule() throws IOException {
         log.info("Start update Database.");
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int month = Calendar.getInstance().get(Calendar.MONTH);
+        //int year = 2016;
+        //int month = 7;
+        
         String deal_ymd = String.format("%04d%02d", year, month);
 
         for (DistrictCode dc : districtCodeSet) {
@@ -102,7 +105,7 @@ public class DataUpdateUtil {
             log.debug(gson.toJson(json));
         }
         log.info("Database update schedule complete successfully.");
-    }
+       }
 
     private String getDataXML(String lawd_cd, String deal_ymd) {
         okhttp3.HttpUrl httpUrl = new okhttp3.HttpUrl.Builder()

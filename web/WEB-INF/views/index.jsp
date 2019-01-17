@@ -36,8 +36,8 @@
 	
 <br>	
 <br>	
-<%-- 혜린>> <a href="<%=R.requestToHost(R.mapping.board_home)%>">게시판 바로가기</a> --%>
-혜린>> <a href="boardList.do">게시판 바로가기</a>
+<%-- <a href="<%=R.requestToHost(R.mapping.board_home)%>">게시판 바로가기</a> --%>
+ <a href="boardList.do">게시판 바로가기</a>
 
 
 </body>

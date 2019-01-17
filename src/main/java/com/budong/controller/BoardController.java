@@ -31,7 +31,7 @@ public class BoardController {
 	}
 	
 	
-	// ±Û¸ñ·ÏÀ¸·Î ÀÌµ¿
+	// ê¸€ëª©ë¡ìœ¼ë¡œ ì´ë™
 	@RequestMapping(value = R.mapping.board_home, method = RequestMethod.GET)
 	public ModelAndView list(Locale locale, ModelAndView mav) {
 
@@ -45,7 +45,7 @@ public class BoardController {
 		return mav;
 	}
 
-	// ±Û »ó¼¼ º¸±â
+	// ê¸€ ìƒì„¸ ë³´ê¸°
 	@RequestMapping(value = R.mapping.board_content, method = RequestMethod.GET)
 	public ModelAndView content(HttpServletRequest req, ModelAndView mav) throws Exception {
 
@@ -65,7 +65,7 @@ public class BoardController {
 
 	}
 
-	// ±Û ¾²±â Æû ÀÌµ¿
+	// ê¸€ ì“°ê¸° í¼ ì´ë™
 	@RequestMapping(value = R.mapping.board_writeform, method = RequestMethod.GET)
 	public String write() {
 
@@ -75,7 +75,7 @@ public class BoardController {
 
 	}
 
-	// ±Û ÀÔ·Â
+	// ê¸€ ì…ë ¥
 	@RequestMapping(value = R.mapping.board_insert, method = RequestMethod.POST)
 	public ModelAndView insert(HttpServletRequest req, ModelAndView mav) throws Exception {
 		logger.info("Board insert: ok");
@@ -97,7 +97,7 @@ public class BoardController {
 		return mav;
 	}
 
-	// ±Û ¼öÁ¤ Æû ÀÌµ¿
+	// ê¸€ ìˆ˜ì • í¼ ì´ë™
 	@RequestMapping(value = R.mapping.board_updateform, method = RequestMethod.GET)
 	public ModelAndView updateform(HttpServletRequest req, ModelAndView mav) throws Exception {
 
@@ -110,10 +110,10 @@ public class BoardController {
 
 		mav.addObject("content", boardContent);
 		mav.setViewName(R.path.board_updateform);
-		return mav; // ¼öÁ¤ ÆûÀ¸·Î ÀÌµ¿
+		return mav; // ìˆ˜ì • í¼ìœ¼ë¡œ ì´ë™
 	}
 
-	// ±Û ¼öÁ¤
+	// ê¸€ ìˆ˜ì •
 	@RequestMapping(value = R.mapping.board_update, method = RequestMethod.POST)
 	public ModelAndView update(HttpServletRequest req, ModelAndView mav) throws Exception{
 		logger.info("Board update: ok");
@@ -133,10 +133,10 @@ public class BoardController {
 		
 		mav.setViewName(R.path.board_home);
 	
-		return mav; // °Ô½Ã±Û ¼öÁ¤ ÈÄ ¸ñ·ÏÀ¸·Î ÀÌµ¿
+		return mav; // ê²Œì‹œê¸€ ìˆ˜ì • í›„ ëª©ë¡ìœ¼ë¡œ ì´ë™
 	}
 
-	// ±Û »èÁ¦
+	// ê¸€ ì‚­ì œ
 	@RequestMapping(value = R.mapping.board_delete, method = RequestMethod.GET)
 	public ModelAndView delete(HttpServletRequest req, ModelAndView mav) throws Exception {
 		logger.info("Board delete: ok");
@@ -151,7 +151,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	// ´ñ±ÛÆûÀ¸·ÎÀÌµ¿
+	// ëŒ“ê¸€í¼ìœ¼ë¡œì´ë™
 	@RequestMapping(value = R.mapping.board_replyform, method = RequestMethod.GET)
 	public ModelAndView replyform(HttpServletRequest req,ModelAndView mav) throws Exception {
 		logger.info("Board replyform: ok");
@@ -166,7 +166,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	// ´ñ±Û´Ş±â
+	// ëŒ“ê¸€ë‹¬ê¸°
 	@RequestMapping(value = R.mapping.board_reply, method = RequestMethod.GET)
 	public ModelAndView reply(HttpServletRequest req,ModelAndView mav) throws Exception {
 		logger.info("Board reply: ok");
@@ -174,7 +174,7 @@ public class BoardController {
 		String replyvalue =req.getParameter("replyvalue");
 		ReplyDTO dto = new ReplyDTO();
 
-		//---------------------------¹øÈ£Ã¼Å©
+		//---------------------------ë²ˆí˜¸ì²´í¬
 		int checkReply = boardDAO.checkReply(num);
 
 		

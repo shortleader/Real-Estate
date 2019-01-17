@@ -9,7 +9,10 @@
 <script
    src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js'></script>
-
+<!-- Bootstrap core CSS -->
+<link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="resources/css/4-col-portfolio.css" rel="stylesheet">
 
 </head>
 <body>
@@ -182,7 +185,7 @@
 
       <%-- <%=R.requestToHostWithScheme("ws",R.mapping.request_web_socket)%> --%>
       function connectWebSocket() {         /*웹 소켓 연결 */
-         webSocket = new WebSocket('ws://localhost:8080/budong/chatting'); 
+         webSocket = new WebSocket('ws://localhost:8090/budong/chatting'); 
          webSocket.onerror = function(event) {
             onError(event);
          };
@@ -391,9 +394,6 @@
          searchFilter.init();
       })();
    </script>
-<<<<<<< HEAD
-   
-=======
->>>>>>> refs/remotes/origin/ljy
+
 </body>
 </html>

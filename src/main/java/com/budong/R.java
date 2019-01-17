@@ -45,7 +45,7 @@ public class R {
 
         public static final String real_estate = "dealInfo/RealEstate";
         public static final String apartment_deal_info = "dealInfo/APTDealList";
-        public static final String board_home = "board/BoardList";
+        public static final String board_home = "board/boardList";
         public static final String board_writeform = "board/BoardWrite";
         public static final String board_content = "board/BoardContent";
         public static final String board_updateform = "board/BoardUpdateForm";
